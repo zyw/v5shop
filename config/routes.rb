@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'managers/logout'
 
+  resources :managers
+
   get 'users/login' => 'users#login'
 
   get 'users/logout' => 'users#logout'
