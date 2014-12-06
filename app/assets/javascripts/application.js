@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require jquery.slimscroll.min
 //= require toastr.min
 //= require app
 //= require site-setting

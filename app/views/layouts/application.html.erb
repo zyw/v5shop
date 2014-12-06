@@ -14,7 +14,7 @@
         Theme style
         <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" /> -->
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  		
+  		<%= csrf_meta_tags %>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -275,17 +275,17 @@
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <%= image_tag('avatar3.png',class:'img-circle',alt:'User Image')%>
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, Jane</p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
+                   <!--  Sidebar user panel
+                   <div class="user-panel">
+                       <div class="pull-left image">
+                           <%= image_tag('avatar3.png',class:'img-circle',alt:'User Image')%>
+                       </div>
+                       <div class="pull-left info">
+                           <p>Hello, Jane</p>
+                   
+                           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                       </div>
+                   </div> -->
                     <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
