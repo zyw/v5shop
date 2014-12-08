@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'managers/logout'
 
+  post 'managers/login_post' => 'managers#loginPost', as: 'manager_longin_post'
+
   resources :managers
 
   get 'users/login' => 'users#login'

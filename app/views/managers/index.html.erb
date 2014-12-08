@@ -1,1 +1,67 @@
-<h1>管理员列表</h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        管理员列表
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">管理员列表</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="box">
+        <div class="box-header">
+            <h3 class="box-title">管理员列表</h3>
+            <div class="box-tools">
+                <div class="pull-right">
+	                <%= link_to(new_manager_path,class:'btn btn-success',style:'color:#fff') do %>
+	                	<i class="fa fa-plus"></i> 添加管理员
+	                <% end %>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+	                <tr>
+	                    <th>ID</th>
+	                    <th>姓名</th>
+	                    <th>Email</th>
+	                    <th>创建时间</th>
+	                    <th>操作</th>
+	                </tr>
+            	</thead>
+                <tbody>
+	                <% @managers.each do |m| %>
+	                <tr>
+	                    <td><%= m[:id] %></td>
+	                    <td><%= m[:name]%></td>
+	                    <td><%= m[:email]%></td>
+	                    <td><%= date_format(m[:created_at])%></td>
+	                    <td>
+	                    	<!-- <button class="btn btn-success btn-xs">
+	                    									<i class="fa fa-plus"></i>
+	                    	</button> 
+							<button class="btn btn-info btn-xs">
+								<i class="fa fa-pencil-square-o"></i>
+							</button>-->
+							<%= link_to(edit_manager_path(m),class:"btn btn-info btn-xs",title:'修改') do %>
+								<i class="fa fa-pencil-square-o"></i>
+							<% end %>
+							<button class="btn btn-warning btn-xs">
+								<i class="fa fa-trash-o"></i>
+							</button>
+							<button class="btn btn-danger btn-xs">
+								<i class="fa fa-pencil-square"></i>
+							</button>
+	                    </td>
+	                </tr>
+	                <% end %>
+            	</tbody>
+            </table>
+        </div><!-- /.box-body -->
+    </div>
+</section><!-- /.content -->

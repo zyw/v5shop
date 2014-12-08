@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
   def current_manager
-  	@current_manager ||= Manager.find_by(session[:manager_id]) if session[:manager_id]
+  	@current_manager ||= Manager.find_by(id:session[:manager_id]) if session[:manager_id]
   end
 
   def check_login
