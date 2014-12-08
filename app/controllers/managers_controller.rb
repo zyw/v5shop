@@ -22,7 +22,13 @@ class ManagersController < ApplicationController
   	@manager = Manager.find(params[:id])
   end
   def index
-  	@managers = Manager.all
+    search_txt = params['search_txt']
+    if search_txt != nil && search_txt != ""
+      @search_txt = search_txt
+      @managers = Manager.where("name LIKE '%#{search_txt}%'").order("created_at desc").page params[:page]
+    else
+      @managers = Manager.order("created_at desc").page params[:page]
+    end
   end
   def new
   	@manager = Manager.new
@@ -31,6 +37,12 @@ class ManagersController < ApplicationController
   	manager = Manager.new(manager_params)
     manager.loginNum = 0;
     manager.save
+    redirect_to :managers
+  end
+
+  def destroy
+    Manager.destroy(params[:id])
+    flash[:message] = "删除管理员成功！"
     redirect_to :managers
   end
 

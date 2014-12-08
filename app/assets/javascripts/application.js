@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap.min
 //= require toastr.min
+//= require bootstrap-dialog.min
 //= require site-setting
 //= require turbolinks
 //= require_tree .

@@ -33,6 +33,8 @@ gem 'font-awesome-rails', '~> 4.2.0.0'
 gem 'ionicons-rails', '~> 1.5.2'
 # 加密密码
 gem 'bcrypt', '~> 3.1.7'
+# 分页插件
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

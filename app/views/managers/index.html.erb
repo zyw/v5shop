@@ -17,14 +17,18 @@
             <h3 class="box-title">管理员列表</h3>
             <div class="box-tools">
                 <div class="pull-right">
-	                <%= link_to(new_manager_path,class:'btn btn-success',style:'color:#fff') do %>
-	                	<i class="fa fa-plus"></i> 添加管理员
-	                <% end %>
+	                <button id="addManager" type="button" class="btn btn-success" data-toggle='tooltip' data-placement="top" title="添加管理员"><i class="fa fa-plus"></i> 添加管理员</button>
                 </div>
             </div>
         </div><!-- /.box-header -->
         <div class="box-body">
-            <table class="table table-bordered table-hover table-striped">
+        	<div class="input-group col-lg-3" style="margin-bottom:20px;">
+                <input type="text" name="manager_search" id="manager_search" class="form-control input-sm" placeholder="查询" value="<%= @search_txt%>">
+                <div class="input-group-btn">
+                    <button id="manager_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                </div>
+             </div>
+        	<table class="table table-bordered table-hover table-striped">
                 <thead>
 	                <tr>
 	                    <th>ID</th>
@@ -42,18 +46,10 @@
 	                    <td><%= m[:email]%></td>
 	                    <td><%= date_format(m[:created_at])%></td>
 	                    <td>
-	                    	<!-- <button class="btn btn-success btn-xs">
-	                    									<i class="fa fa-plus"></i>
-	                    	</button> 
-							<button class="btn btn-info btn-xs">
-								<i class="fa fa-pencil-square-o"></i>
-							</button>-->
-							<%= link_to(edit_manager_path(m),class:"btn btn-info btn-xs",title:'修改') do %>
-								<i class="fa fa-pencil-square-o"></i>
-							<% end %>
-							<button class="btn btn-warning btn-xs">
+							<a href="<%= edit_manager_path(m)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
+							<%= link_to(manager_path(m), method: :delete,data:{confirm:"您确认要删除删除吗？"},class:'btn btn-warning btn-xs') do %>
 								<i class="fa fa-trash-o"></i>
-							</button>
+							<% end %>
 							<button class="btn btn-danger btn-xs">
 								<i class="fa fa-pencil-square"></i>
 							</button>
@@ -62,6 +58,26 @@
 	                <% end %>
             	</tbody>
             </table>
+            <div class="box-footer clearfix">
+            	<div class="pull-left" style="line-height:70px;">
+            		<%= page_entries_info @managers %>
+            	</div>
+            	<div class="pull-right">
+            		<%= paginate @managers %>
+            	</div>
+            	
+            </div>
         </div><!-- /.box-body -->
     </div>
+    <script type="text/javascript">
+	    $(function(){
+	    	$("#addManager").click(function(){
+	    		location.href = '<%= new_manager_path%>';
+	    	})
+	    	$("#manager_search_btn").click(function(){
+	    		var search_txt = $("#manager_search").val();
+	    		location.href = "<%= managers_path%>?search_txt=" +search_txt;
+	    	})
+	    })
+    </script>
 </section><!-- /.content -->
