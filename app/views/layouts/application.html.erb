@@ -368,10 +368,13 @@
                                     <i class="fa fa-angle-double-right"></i> 管理员管理
                                     <% end %>
                                 </li>
-                                <li><a href="examples/login.html"><i class="fa fa-angle-double-right"></i> 会员管理</a></li>
+                                <li>
+                                    <%= link_to(users_path) do %>
+                                        <i class="fa fa-angle-double-right"></i> 会员管理
+                                    <% end %>
+                                </li>
                             </ul>
                         </li>
-                        
                     </ul>
                 </section>
                 <!-- /.sidebar -->

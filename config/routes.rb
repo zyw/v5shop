@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :users
+
   get 'managers/login',as:'manager_login'
 
   get 'managers/logout',as: 'manager_logout'
