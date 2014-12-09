@@ -4,6 +4,6 @@ class Manager < ActiveRecord::Base
 
 	validates :name,presence: true
 	validates :email,presence: true
-	validates :password,length: { minimum: 6 }
-	validates :password_confirmation,confirmation: true
+	# validates :password,length: { minimum: 6 }
+	# validates :password_confirmation,confirmation: true
 end

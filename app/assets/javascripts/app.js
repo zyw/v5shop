@@ -138,6 +138,41 @@ $(function() {
     });*/
 
     $("[data-toggle='tooltip']").tooltip();
+    /*rails 自定义弹出框*/
+    $.rails.allowAction = function(element){
+        if( undefined === element.attr('data-confirm') ){
+            return true;
+        }
+
+        $.rails.showConfirmDialog(element);
+        return false;
+    };
+
+    $.rails.confirmed = function(element){
+        element.removeAttr('data-confirm');
+        element.trigger('click.rails');
+    };
+
+    $.rails.showConfirmDialog = function(element){
+        var msg = element.data('confirm');
+        BootstrapDialog.show({
+                        title: '提示',
+                        message: msg,
+                        buttons: [{
+                            label: '确定',
+                            cssClass: 'btn-primary',
+                            action: function(dialog) {
+                                dialog.close();
+                                $.rails.confirmed(element);
+                            }
+                        }, {
+                            label: '取消',
+                            action: function(dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+                     });
+    };
 });
 function fix_sidebar() {
     //Make sure the body tag has the .fixed class
@@ -187,41 +222,7 @@ toastr.options = {
     max: $.validator.format("请输入不大于 {0} 的数值"),
     min: $.validator.format("请输入不小于 {0} 的数值")
 });*/
-/*rails 自定义弹出框*/
-$.rails.allowAction = function(element){
-    if( undefined === element.attr('data-confirm') ){
-        return true;
-    }
 
-    $.rails.showConfirmDialog(element);
-    return false;
-};
-
-$.rails.confirmed = function(element){
-    element.removeAttr('data-confirm');
-    element.trigger('click.rails');
-};
-
-$.rails.showConfirmDialog = function(element){
-    var msg = element.data('confirm');
-    BootstrapDialog.show({
-                    title: '提示',
-                    message: msg,
-                    buttons: [{
-                        label: '确定',
-                        cssClass: 'btn-primary',
-                        action: function(dialog) {
-                            dialog.close();
-                            $.rails.confirmed(element);
-                        }
-                    }, {
-                        label: '取消',
-                        action: function(dialog) {
-                            dialog.close();
-                        }
-                    }]
-                 });
-};
 $(window).load(function() {
     /*! pace 0.4.17 */
     (function() {

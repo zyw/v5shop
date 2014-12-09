@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   
   get 'managers/login',as:'manager_login'
 
-  get 'managers/logout'
+  get 'managers/logout',as: 'manager_logout'
 
   post 'managers/login_post' => 'managers#loginPost', as: 'manager_longin_post'
+
+  post 'managers/reset_pwd' => 'managers#resetPassword',as: 'manager_reset_pwd'
 
   resources :managers
 

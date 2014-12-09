@@ -47,10 +47,10 @@
 	                    <td><%= date_format(m[:created_at])%></td>
 	                    <td>
 							<a href="<%= edit_manager_path(m)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
-							<%= link_to(manager_path(m), method: :delete,data:{confirm:"您确认要删除删除吗？"},class:'btn btn-warning btn-xs') do %>
+							<%= link_to(manager_path(m), method: :delete,data:{confirm:"您确认要删除删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
 								<i class="fa fa-trash-o"></i>
 							<% end %>
-							<button class="btn btn-danger btn-xs">
+							<button data-mid="<%= m[:id]%>" class="btn btn-danger btn-xs reset_pwd_btn" data-toggle='tooltip' data-placement="top" title="修改密码">
 								<i class="fa fa-pencil-square"></i>
 							</button>
 	                    </td>
@@ -69,8 +69,52 @@
             </div>
         </div><!-- /.box-body -->
     </div>
+
+    <div class="modal fade" id="resetPwdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">重置密码</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_tag(manager_reset_pwd_path,class:'form-horizontal',role:'form',id:'resetPwdForm') do %>
+                <%= hidden_field_tag 'manager_id'%>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-8">
+                      <%= password_field_tag 'password',nil,class:"form-control",placeholder:'密码' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-8">
+                      <%= password_field_tag 'password_confirmation',nil,class:"form-control",placeholder:'确认密码' %>
+                    </div>
+                  </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button id="resetPwdSubmit" type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="manager_message" value="<%= flash[:message]%>">
+    <input type="hidden" id="manager_alert" value="<%= flash[:alert]%>">
     <script type="text/javascript">
 	    $(function(){
+            var message = $("#manager_message").val();
+            if(message !== ''){
+                toastr.success(message);
+                $("#manager_message").val("");
+            }
+            var alertMsg = $("#manager_alert").val();
+            if(alertMsg !== ''){
+                toastr.error(alertMsg);
+                $("#manager_alert").val("");
+            }
 	    	$("#addManager").click(function(){
 	    		location.href = '<%= new_manager_path%>';
 	    	})
@@ -78,6 +122,22 @@
 	    		var search_txt = $("#manager_search").val();
 	    		location.href = "<%= managers_path%>?search_txt=" +search_txt;
 	    	})
+            $(".reset_pwd_btn").click(function(){
+                $("#resetPwdModal").modal('show');
+                var mid = $(this).data('mid');
+
+                $("#manager_id").val(mid);
+            })
+            $("#resetPwdSubmit").click(function() {
+                if($.trim($("#password").val()) === ''){
+                    toastr.warning("密码不能为空！");
+                }else if($.trim($("#password").val()) !== $.trim($("#password_confirmation").val())){
+                    toastr.warning("两次输入密码不一致！");
+                }else{
+                    $("#resetPwdForm").submit();
+                    $("#resetPwdModal").modal('hide');
+                }
+            });
 	    })
     </script>
 </section><!-- /.content -->
