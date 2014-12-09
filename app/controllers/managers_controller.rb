@@ -55,13 +55,9 @@ class ManagersController < ApplicationController
   end
 
   def destroy
-    if Manager.destroy(params[:id])
-      flash[:message] = "删除管理员成功！"
-      redirect_to :managers
-    else
-      flash[:alert] = "删除管理员失败，" + Manager.errors.full_messages
-      redirect_to :managers
-    end
+    Manager.destroy(params[:id])
+    flash[:message] = "删除管理员成功！"
+    redirect_to :managers
   end
 
   def resetPassword
