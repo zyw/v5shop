@@ -353,8 +353,8 @@
                         </li>
                         <li>
                             <a href="mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
+                                <i class="fa fa-shopping-cart"></i> <span>商品管理</span>
+                                <!-- <small class="badge pull-right bg-yellow">2</small> -->
                             </a>
                         </li>
                         <li class="treeview">
@@ -366,6 +366,24 @@
                                 <li>
                                     <%= link_to(managers_path) do%>
                                     <i class="fa fa-angle-double-right"></i> 管理员管理
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to(users_path) do %>
+                                        <i class="fa fa-angle-double-right"></i> 会员管理
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-user"></i> <span>系统管理</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <%= link_to(managers_path) do%>
+                                    <i class="fa fa-angle-double-right"></i> 字典管理
                                     <% end %>
                                 </li>
                                 <li>

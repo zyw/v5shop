@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+     search_txt = params['search_txt']
+    if search_txt != nil && search_txt != ""
+      @search_txt = search_txt
+      @users = User.where("name LIKE '%#{search_txt}%'").order("created_at desc").page params[:page]
+    else
+      @users = User.order("created_at desc").page params[:page]
+    end
   end
 
   # GET /users/1
@@ -28,10 +34,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to :users, notice: '新增用户成功！' }
+        format.json { render :users, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.html { render :users }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -42,8 +48,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to :users, notice: '修改用户成功！' }
+        format.json { render :users, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -56,7 +62,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: '用户删除成功！' }
       format.json { head :no_content }
     end
   end

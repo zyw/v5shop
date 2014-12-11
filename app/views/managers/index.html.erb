@@ -47,7 +47,7 @@
 	                    <td><%= date_format(m[:created_at])%></td>
 	                    <td>
 							<a href="<%= edit_manager_path(m)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
-							<%= link_to(manager_path(m), method: :delete,data:{confirm:"您确认要删除删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
+							<%= link_to(manager_path(m), method: :delete,data:{confirm:"您确认要删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
 								<i class="fa fa-trash-o"></i>
 							<% end %>
 							<button data-mid="<%= m[:id]%>" class="btn btn-danger btn-xs reset_pwd_btn" data-toggle='tooltip' data-placement="top" title="修改密码">
