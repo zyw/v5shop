@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :products
+
   resources :dicts
 
   # 字典类型

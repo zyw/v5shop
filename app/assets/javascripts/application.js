@@ -15,6 +15,6 @@
 //= require bootstrap.min
 //= require toastr.min
 //= require bootstrap-dialog.min
+//= require webuploader.min
 //= require site-setting
 //= require turbolinks
-//= require_tree .

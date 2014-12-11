@@ -1,5 +1,6 @@
 class DictTypesController < ApplicationController
   before_action :set_dict_type, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   # GET /dict_types
   # GET /dict_types.json

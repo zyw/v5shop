@@ -16,6 +16,8 @@
  *= require AdminLTE
  *= require toastr.min
  *= require bootstrap-dialog.min
+ *= require webuploader
+ *= require common
  *= require_tree .
  *= require_self
  */

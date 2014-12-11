@@ -1,5 +1,6 @@
 class DictsController < ApplicationController
   before_action :set_dict, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   # GET /dicts
   # GET /dicts.json

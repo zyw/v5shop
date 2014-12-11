@@ -352,10 +352,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailbox.html">
+                            <%= link_to(products_path) do%>
+                                <i class="fa fa-shopping-cart"></i> <span>产品管理</span>
+                            <% end %>
+                            <!-- <a href="mailbox.html">
                                 <i class="fa fa-shopping-cart"></i> <span>商品管理</span>
-                                <!-- <small class="badge pull-right bg-yellow">2</small> -->
-                            </a>
+                                <small class="badge pull-right bg-yellow">2</small>
+                            </a> -->
                         </li>
                         <li class="treeview">
                             <a href="#">
