@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dict.name %>
+</p>
+
+<p>
+  <strong>Dict type:</strong>
+  <%= @dict.dict_type_id %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @dict.intro %>
+</p>
+
+<%= link_to 'Edit', edit_dict_path(@dict) %> |
+<%= link_to 'Back', dicts_path %>

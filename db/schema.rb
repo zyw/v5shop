@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209112157) do
+ActiveRecord::Schema.define(version: 20141211055607) do
+
+  create_table "dict_types", force: true do |t|
+    t.string   "name"
+    t.text     "intro"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dicts", force: true do |t|
+    t.string   "name"
+    t.integer  "dict_type_id"
+    t.text     "intro"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "managers", force: true do |t|
     t.string   "name"

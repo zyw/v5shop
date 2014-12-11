@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
   
+  resources :dicts
+
+  # 字典类型
+  resources :dict_types
+
+  # 会员
   resources :users
 
+  get 'users/login' => 'users#login'
+
+  get 'users/logout' => 'users#logout'
+
+  # 管理员
   get 'managers/login',as:'manager_login'
 
   get 'managers/logout',as: 'manager_logout'
@@ -12,10 +23,7 @@ Rails.application.routes.draw do
 
   resources :managers
 
-  get 'users/login' => 'users#login'
-
-  get 'users/logout' => 'users#logout'
-
+  # 后台首页
   get 'admins/index'
 
   get 'admins/show'

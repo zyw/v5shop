@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dict_type.name %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @dict_type.intro %>
+</p>
+
+<%= link_to 'Edit', edit_dict_type_path(@dict_type) %> |
+<%= link_to 'Back', dict_types_path %>
