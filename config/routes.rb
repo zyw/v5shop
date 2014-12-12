@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  
+  # 产品信息
   resources :products
 
+  post 'product/picture/upload' => 'products#pictureUpload'
+
+  # 字典
   resources :dicts
 
   # 字典类型

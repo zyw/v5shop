@@ -10,19 +10,19 @@ jQuery(function() {
         thumbnailHeight = 100 * ratio,
 
         // Web Uploader实例
-        uploader;
-
+        uploader,swf_path;
+        swf_path = $("uploader_swf_path").val();
     // 初始化Web Uploader
     uploader = WebUploader.create({
 
         // 自动上传。
-        auto: true,
+        //auto: false,
 
         // swf文件路径
-        swf: '/js/Uploader.swf',
+        swf: swf_path,
 
         // 文件接收服务端。
-        server: 'http://webuploader.duapp.com/server/fileupload.php',
+        server: 'product/picture/upload',
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.

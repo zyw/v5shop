@@ -8,7 +8,7 @@
 # Rails.application.config.assets.precompile += %w( fontawesome-webfont.svg )
 # Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.eot )
 # Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.woff )
-Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/,/.*\.eot/,/.*\.woff/,/.*\.ttf/,/.*\.svg/]
+Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/,/.*\.eot/,/.*\.woff/,/.*\.ttf/,/.*\.svg/,/.*\.swf/]
 # Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 # Rails.application.config.assets.precompile += %w( AdminLTE.css )
 

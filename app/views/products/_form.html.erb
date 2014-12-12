@@ -1,4 +1,4 @@
-<%= form_for @product,html:{class:'form-horizontal',role:'form'} do |f| %>
+<%= form_for @product,html:{class:'form-horizontal',role:'form',multipart: true} do |f| %>
         <% if @product.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -32,7 +32,7 @@
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">产品状态</label>
           <div class="col-sm-8">
-            <%= f.text_field :dict_id,class:"form-control",placeholder:'产品状态' %>
+            <%= f.text_field :status,class:"form-control",placeholder:'产品状态' %>
           </div>
         </div>
         <div class="form-group">
@@ -41,8 +41,11 @@
             <!--dom结构部分-->
             <div id="uploader-demo" class="wu-example">
                 <div id="fileList" class="uploader-list"></div>
+                <button id="ctlBtn" style="float:right" class="btn btn-default">开始上传</button>
                 <div id="filePicker">选择图片</div>
+                
             </div>
+
           </div>
         </div>
         <div class="form-group">
@@ -58,4 +61,5 @@
           </div>
         </div>
       <% end %>
+      <input type="hidden" id="uploader_swf_path" value="<%= asset_path('Uploader.swf')%>">
 <script src="<%= javascript_path('uploader')%>" type="text/javascript"></script>

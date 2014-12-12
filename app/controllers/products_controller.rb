@@ -31,16 +31,23 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    updated_io = params['file']
+    puts "文件信息：#{updated_io == nil}"
+    #respond_to do |format|
+    #  if @product.save
+    #    format.html { redirect_to @product, notice: 'Product was successfully created.' }
+    #    format.json { render :show, status: :created, location: @product }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @product.errors, status: :unprocessable_entity }
+    #  end
+    #end
+    redirect_to :products
+  end
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+  def pictureUpload
+    updated_io = params['file']
+    puts "文件信息：#{updated_io == nil}"
   end
 
   # PATCH/PUT /products/1
@@ -75,6 +82,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :picture, :feeScale, :dict_id, :intro)
+      params.require(:product).permit(:name, :picture, :feeScale, :dict_id, :status, :intro)
     end
 end
