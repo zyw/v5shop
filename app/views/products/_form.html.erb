@@ -38,13 +38,20 @@
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">产品图片</label>
           <div class="col-sm-8">
-            <!--dom结构部分-->
-            <div id="uploader-demo" class="wu-example">
-                <div id="fileList" class="uploader-list"></div>
-                <button id="ctlBtn" style="float:right" class="btn btn-default">开始上传</button>
-                <div id="filePicker">选择图片</div>
-                
+            <%= f.hidden_field :picture %>
+            <div id="fileList" class="uploader-list"></div>
+            <div class="row">
+              <div class="col-sm-2">
+                <!--dom结构部分-->
+                <div id="uploader-demo" class="wu-example">
+                    <div id="filePicker">选择图片</div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <button id="start_upload" type="button" style="float:right" class="btn btn-default">开始上传</button>
+              </div>
             </div>
+            
 
           </div>
         </div>

@@ -31,23 +31,32 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    updated_io = params['file']
-    puts "文件信息：#{updated_io == nil}"
-    #respond_to do |format|
-    #  if @product.save
-    #    format.html { redirect_to @product, notice: 'Product was successfully created.' }
-    #    format.json { render :show, status: :created, location: @product }
-    #  else
-    #    format.html { render :new }
-    #    format.json { render json: @product.errors, status: :unprocessable_entity }
-    #  end
-    #end
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
     redirect_to :products
   end
 
   def pictureUpload
-    updated_io = params['file']
-    puts "文件信息：#{updated_io == nil}"
+    uploaded_io = params['file']
+    if !(Dir.exist?(Rails.root.join('public', 'uploads')))
+      Dir.mkdir(Rails.root.join('public','uploads'),0700)
+    end
+    if !(Dir.exist?(Rails.root.join('public', 'uploads','product_imgs')))
+      Dir.mkdir(Rails.root.join('public','uploads','product_imgs'),0700)
+    end
+    img_name = "#{DateTime.now.to_i}#{File.extname(uploaded_io.original_filename)}"
+    img_path = "uploads/product_imgs/#{img_name}"
+    File.open(Rails.root.join('public', 'uploads','product_imgs', img_name), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    render json: "{\"status\":1,\"message\":\"上传产品图片成功！\",\"img_path\":\"#{img_path}\"}"
   end
 
   # PATCH/PUT /products/1

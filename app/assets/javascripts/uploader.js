@@ -10,8 +10,9 @@ jQuery(function() {
         thumbnailHeight = 100 * ratio,
 
         // Web Uploader实例
-        uploader,swf_path;
-        swf_path = $("uploader_swf_path").val();
+        uploader,swf_path,
+        swf_path = $("uploader_swf_path").val(),
+        authenticity_token = $('meta[name=csrf-token]').attr('content');
     // 初始化Web Uploader
     uploader = WebUploader.create({
 
@@ -22,7 +23,7 @@ jQuery(function() {
         swf: swf_path,
 
         // 文件接收服务端。
-        server: 'product/picture/upload',
+        server: '/product/picture/upload',
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -33,7 +34,12 @@ jQuery(function() {
             title: 'Images',
             extensions: 'gif,jpg,jpeg,bmp,png',
             mimeTypes: 'image/*'
-        }
+        },
+        formData:{authenticity_token: authenticity_token}
+    });
+
+    $("#start_upload").on("click",function(){
+        uploader.upload();
     });
 
     // 当有文件添加进来的时候
@@ -75,7 +81,8 @@ jQuery(function() {
     });
 
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-    uploader.on( 'uploadSuccess', function( file ) {
+    uploader.on( 'uploadSuccess', function( file,response) {
+        $("#product_picture").val(response.img_path)
         $( '#'+file.id ).addClass('upload-state-done');
     });
 
