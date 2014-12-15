@@ -78,6 +78,6 @@ class DictsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dict_params
-      params.require(:dict).permit(:name, :dict_type_id, :intro)
+      params.require(:dict).permit(:name,:value, :dict_type_id, :intro)
     end
 end

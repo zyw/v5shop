@@ -20,11 +20,15 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    @proStatues = Dict.where(dict_type_id: 3)
+    @chargeTypes = Dict.where(dict_type_id: 6)
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
+    @proStatues = Dict.where(dict_type_id: 3)
+    @chargeTypes = Dict.where(dict_type_id: 6)
   end
 
   # POST /products
@@ -33,14 +37,13 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to :products, notice: '添加产品信息成功！' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to :products
   end
 
   def pictureUpload
@@ -64,7 +67,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to :products, notice: '产品信息修改成功！' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -91,6 +94,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :picture, :feeScale, :dict_id, :status, :intro)
+      params.require(:product).permit(:name, :picture, :feeScale, :charge_type, :status, :intro)
     end
 end

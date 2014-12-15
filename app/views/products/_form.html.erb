@@ -1,4 +1,4 @@
-<%= form_for @product,html:{class:'form-horizontal',role:'form',multipart: true} do |f| %>
+<%= form_for @product,html:{class:'form-horizontal',id:'productForm',role:'form',multipart: true} do |f| %>
         <% if @product.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -24,15 +24,31 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">产品类型</label>
+          <label for="name" class="col-sm-2 control-label">收费方式</label>
           <div class="col-sm-8">
-            <%= f.text_field :dict_id,class:"form-control",placeholder:'产品类型' %>
+            <%= f.select(:charge_type,nil,{},class:'form-control') do %>
+              <% @chargeTypes.each do |ct| -%>
+                <% if @product.charge_type == ct.value %>
+                  <%= content_tag(:option, ct.name, value: ct.value,selected: 'selected') %>
+                <% else %>
+                  <%= content_tag(:option, ct.name, value: ct.value) %>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">产品状态</label>
           <div class="col-sm-8">
-            <%= f.text_field :status,class:"form-control",placeholder:'产品状态' %>
+            <%= f.select(:status,nil,{},class:'form-control') do %>
+              <% @proStatues.each do |ps| -%>
+                <% if @product.status == ps.value %>
+                  <%= content_tag(:option, ps.name, value: ps.value,selected: 'selected') %>
+                <% else %>
+                  <%= content_tag(:option, ps.name, value: ps.value) %>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
         <div class="form-group">
@@ -70,3 +86,28 @@
       <% end %>
       <input type="hidden" id="uploader_swf_path" value="<%= asset_path('Uploader.swf')%>">
 <script src="<%= javascript_path('uploader')%>" type="text/javascript"></script>
+<script type="text/javascript">
+  $(function(){
+    $("#productForm").bootstrapValidator({
+      message: 'This value is not valid',
+      feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+
+        fields: {
+          'product[name]':{
+            validators: {
+                    notEmpty: {}
+                }
+          },
+          'product[feeScale]':{
+            validators:{
+              notEmpty:{}
+            }
+          }
+        }
+    });
+  })
+</script>

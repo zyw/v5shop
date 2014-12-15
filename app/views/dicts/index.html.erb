@@ -33,6 +33,7 @@
                   <tr>
                       <th>ID</th>
                       <th>字典名称</th>
+                      <th>字典值</th>
                       <th>字典类型</th>
                       <th>创建时间</th>
                       <th>操作</th>
@@ -43,7 +44,8 @@
                     <tr>
                       <td><%= dict.id %></td>
                       <td><%= dict.name %></td>
-                      <td><%= dict.dict_type_id %></td>
+                      <td><%= dict.value %></td>
+                      <td><%= dict.dict_type.name %></td>
                       <td><%= date_format(dict.created_at) %></td>
                       <td>
                         <a href="<%= edit_dict_path(dict)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>

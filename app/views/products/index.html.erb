@@ -35,7 +35,7 @@
                       <th>名称</th>
                       <th>头像</th>
                       <th>收费标准</th>
-                      <th>产品类型</th>
+                      <th>收费方式</th>
                       <th>产品状态</th>
                       <th>上架时间</th>
                       <th>操作</th>
@@ -48,8 +48,8 @@
                       <td><%= product.name %></td>
                       <td><%= product.picture %></td>
                       <td><%= product.feeScale %></td>
-                      <td><%= product.dict_id %></td>
-                      <td><%= product.status %></td>
+                      <td><%= chargeType_format(product.charge_type) %></td>
+                      <td><%= status_format(product.status,"上架",'下架') %></td>
                       <td><%= date_format(product.created_at) %></td>
                       <td>
                         <%= link_to 'Show', product %>

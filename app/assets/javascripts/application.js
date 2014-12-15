@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require bootstrapValidator.min
 //= require toastr.min
 //= require bootstrap-dialog.min
 //= require webuploader.min

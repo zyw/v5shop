@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211082152) do
+ActiveRecord::Schema.define(version: 20141215072745) do
 
   create_table "dict_types", force: true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141211082152) do
     t.text     "intro"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "value"
   end
 
   create_table "managers", force: true do |t|
@@ -42,11 +43,11 @@ ActiveRecord::Schema.define(version: 20141211082152) do
     t.string   "name"
     t.string   "picture"
     t.string   "feeScale"
-    t.integer  "dict_id"
     t.text     "intro"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
+    t.string   "charge_type"
   end
 
   create_table "users", force: true do |t|
