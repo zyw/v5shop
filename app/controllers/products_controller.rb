@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.html { redirect_to :products, notice: '添加产品信息成功！' }
+        format.html { redirect_to :products, notice: '添加产品信息成功。' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to :products, notice: '产品信息修改成功！' }
+        format.html { redirect_to :products, notice: '产品信息修改成功。' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -81,7 +81,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: '成功删除产品信息。' }
       format.json { head :no_content }
     end
   end
