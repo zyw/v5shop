@@ -1,0 +1,93 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        行政区划列表
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">行政区划列表</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">行政区划列表</h3>
+            <div class="box-tools">
+                <div class="pull-right">
+                  <button id="addAdminDivision" type="button" class="btn btn-success" data-toggle='tooltip' data-placement="top" title="行政区划列表"><i class="fa fa-plus"></i> 添加行政区划</button>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <div class="input-group col-lg-3" style="margin-bottom:20px;">
+                <input type="text" name="user_search" id="user_search" class="form-control input-sm" placeholder="查询" value="<%= @search_txt%>">
+                <div class="input-group-btn">
+                    <button id="user_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                </div>
+             </div>
+          <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>名称</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  <% @admin_divisions.each do |ad| %>
+                    <tr>
+                      <td><%= ad.id %></td>
+                      <td><%= ad.name %></td>
+                      <td><%= date_format(ad.created_at) %></td>
+                      <td>
+                      <a href="<%= new_admin_division_path%>?pid=<%= ad.id%>" class="btn btn-success btn-xs" data-toggle='tooltip' data-placement="top" title="添加子区划"><i class="fa fa-plus"></i></a>
+                        <a href="<%= edit_admin_division_path(ad)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
+                        <%= link_to(ad, method: :delete,data:{confirm:"您确认要删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
+                          <i class="fa fa-trash-o"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+              </tbody>
+            </table>
+            <div class="box-footer clearfix">
+              <div class="pull-left" style="line-height:70px;">
+                <%= page_entries_info @admin_divisions %>
+              </div>
+              <div class="pull-right">
+                <%= paginate @admin_divisions %>
+              </div>
+              
+            </div>
+        </div><!-- /.box-body -->
+    </div>
+    <input type="hidden" id="adminDivision_message" value="<%= notice %>">
+    <input type="hidden" id="adminDivision_alert" value="<%= alert %>">
+    <script type="text/javascript">
+      $(function(){
+            var message = $("#adminDivision_message").val();
+            if(message !== ''){
+                toastr.success(message);
+                $("#adminDivision_message").val("");
+            }
+            var alertMsg = $("#adminDivision_alert").val();
+            if(alertMsg !== ''){
+                toastr.error(alertMsg);
+                $("#adminDivision_alert").val("");
+            }
+        $("#addAdminDivision").click(function(){
+          location.href = '<%= new_admin_division_path %>';
+        })
+        $("#user_search_btn").click(function(){
+          var search_txt = $("#user_search").val();
+          location.href = "<%= users_path%>?search_txt=" +search_txt;
+        })
+
+      })
+    </script>
+</section><!-- /.content -->
+

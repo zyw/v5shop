@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin_division.name %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @admin_division.parent_id %>
+</p>
+
+<%= link_to 'Edit', edit_admin_division_path(@admin_division) %> |
+<%= link_to 'Back', admin_divisions_path %>

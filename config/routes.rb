@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :admin_divisions
+
   resources :addresses
 
   # 产品信息
