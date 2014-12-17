@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>保洁服务平台</title>
+	<%= stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<body>
+	<!--container start-->
+	<div class="container">
+	<!--head start-->
+	<div class="head">
+	    <div class="headcon">
+	       <div class="headcon_l">您好，欢迎光临XX网站！</div>
+	       <div class="headcon_r">
+			<%= link_to "登录",'users/login' %>
+	       <!-- <a href="">登陆</a>  -->| <a href="">注册</a>
+	       </div>
+	    </div>
+	</div>
+	<!--head end-->
+	<!--top start--> 
+	<div class="top">
+	     <div class="topcon">
+	         <div class="topcon_l">LOGO</div>
+	         <div class="topcon_r">
+	            <div class="dh">
+	            	<%= image_tag('front/dh.jpg',width:'251',height:'30')%>
+	            </div>
+	            <div class="clear"></div>
+	            <div class="menu">
+	                <ul> 
+	                    <li><a href="index.html">网站首页</a></li>
+	                    <li><a href="about.html">快速下单</a></li>
+	                    <li><a href="fwlc.html">服务项目</a></li>
+	                    <li><a href="anli.html">客户案例</a></li>
+	                    <li><a href="lxwm.html">联系我们</a></li>
+	                </ul>
+	            </div>
+	         </div>
+	     </div> 
+	</div>
+	<!--top end-->
+	<!--banner start-->
+	<div class="banner">
+	   <div class="bannercon">
+	       <div class="bannercon_l">
+	           <h1>最值得信赖的保洁服务平台</h1>
+	           <p><a href="">
+	           	<%= image_tag('front/pic1.png',width:'333',height:'60')%>
+	           	</a></p>
+	           <p><a href="">
+	           	<%= image_tag('front/pic2.png',width:'333',height:'60')%>
+	           	</a></p>
+	       </div>
+	       <div class="bannercon_r">扫下方微信二维码预定更方便<br/>
+	       <%= image_tag('front/2wm.jpg',width:'172',height:'172')%>
+	       </div>
+	   </div>
+	</div>
+	<!--banner end-->
+	<!--fwxm start-->
+	<div class="fwxm">
+	   <div class="fwxmcon">
+	       <div class="tit1">服务项目 SERVICE</div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw1.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>保洁</h1>
+	               <p>室内保洁<br/>室外保洁</p>
+	            </div>
+	         </div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw3.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>清洗</h1>
+	               <p>沙发清洗<br/>地毯清洗</p>
+	            </div>
+	         </div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw5.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>粉刷</h1>
+	               <p>内墙粉刷<br/>外墙粉刷</p>
+	            </div>
+	         </div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw2.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>翻新</h1>
+	               <p>石材翻新<br/>地板打蜡</p>
+	            </div>
+	         </div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw4.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>安装</h1>
+	               <p>空调安装<br/>落雨管道安装</p>
+	            </div>
+	         </div>
+	         <div class="fw1">
+	            <div class="fw1_l">
+	            	<%= image_tag('front/fw6.png',width:'110',height:'110')%>
+	            </div>
+	            <div class="fw1_r">
+	               <h1>防水</h1>
+	               <p>外墙防水</p>
+	            </div>
+	         </div>
+	   </div>
+	</div>
+	<!--fwxm end-->
+	<!--fwal start-->
+	<div class="fwal">
+	   <div class="fwalcon">
+	       <div class="tit1">服务案例 CASE</div>
+	       <ul>
+	          <li>
+	             <a href="">
+	             	<%= image_tag('front/pic1.jpg',width:'236',height:'175')%>
+	             </a>
+	             <h1><a href="">案例名称</a></h1>
+	          </li>
+	          <li>
+	             <a href="">
+	             	<%= image_tag('front/pic2.jpg',width:'236',height:'175')%>
+	             </a>
+	             <h1><a href="">案例名称</a></h1>
+	          </li>
+	          <li>
+	             <a href="">
+	             	<%= image_tag('front/pic3.jpg',width:'236',height:'175')%>
+	             </a>
+	             <h1><a href="">案例名称</a></h1>
+	          </li>
+	          <li>
+	             <a href="">
+	             	<%= image_tag('front/pic4.jpg',width:'236',height:'175')%>
+	             </a>
+	             <h1><a href="">案例名称</a></h1>
+	          </li>
+	       </ul>
+	   </div>
+	</div>
+	<!--fwal end-->
+	<!--fwcn start-->
+	<div class="fwcn">
+	     <div class="fwcncon">
+	         <div class="tit1">xx竭诚为您服务</div>
+	         <ul>
+	             <li>
+	             	<%= image_tag('front/cn1.jpg',width:'236',height:'250')%>
+	             </li>
+	             <li>
+	             	<%= image_tag('front/cn2.jpg',width:'236',height:'250')%>
+	             </li>
+	             <li>
+	             	<%= image_tag('front/cn3.jpg',width:'236',height:'250')%>
+	             </li>
+	             <li>
+	             	<%= image_tag('front/cn4.jpg',width:'236',height:'250')%>
+	             </li>
+	         </ul>
+	     </div>
+	</div>
+	<!--fwcn end-->
+	<!--fwlc start-->
+	<div class="fwlc">
+	    <div class="fwlccon">
+	        <div class="tit1">服务案例 CASE</div>
+	        <%= image_tag('front/pic5.jpg',width:'1000',height:'100')%>
+	    </div>
+	</div>
+	<!--fwlc end-->
+	<!--footer start-->
+	<div class="footer">
+	    <div class="footercon">
+	         <div class="footer_links"><a href="">网站首页</a>　|　<a href="">快速下单</a>　|　<a href="">服务项目</a>　|　<a href="">客户案例</a>　|　<a href="#">联系我们</a>
+	        </div>
+	        <p>Copyright@2014 XXX 版权所有 陕ICP备123456789号</p>
+	    </div>
+	</div>
+	<!--footer end-->
+	</div>
+	<!--container end-->	 
+</body>
+</html>

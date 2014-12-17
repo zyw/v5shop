@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  #行政区划管理
   resources :admin_divisions
 
+  #服务地址管理
   resources :addresses
 
   # 产品信息
@@ -15,11 +17,11 @@ Rails.application.routes.draw do
   resources :dict_types
 
   # 会员
-  resources :users
-
   get 'users/login' => 'users#login'
 
   get 'users/logout' => 'users#logout'
+  
+  resources :users
 
   # 管理员
   get 'managers/login',as:'manager_login'
@@ -39,11 +41,12 @@ Rails.application.routes.draw do
 
   get 'admins/new'
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

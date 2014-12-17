@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_login,only: [:index,:show,:destroy]
+  layout false,only: [:login,:logout]
   # GET /users
   # GET /users.json
   def index
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
       @users = User.order("created_at desc").page params[:page]
     end
   end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -65,6 +65,14 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: '用户删除成功！' }
       format.json { head :no_content }
     end
+  end
+
+  def login
+    
+  end
+
+  def logout
+    
   end
 
   private
