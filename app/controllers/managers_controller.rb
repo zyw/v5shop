@@ -1,6 +1,7 @@
 class ManagersController < ApplicationController
 	layout false,:only => ['login','layout']
 	before_action :check_login,except:[:login,:loginPost]
+  
   def login
   end
 
