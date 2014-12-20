@@ -68,11 +68,21 @@ class UsersController < ApplicationController
   end
 
   def login
-    
+    @user = User.new
   end
-
+  def loginPost
+    user = User.find_by(name:params[:name])
+    if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect_to :root
+    else
+      flash[:alert] = "用户名或密码错误！"
+      redirect_to '/users/login'
+    end
+  end
   def logout
-    
+    reset_session
+    redirect_to :root
   end
 
   private

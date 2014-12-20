@@ -3,18 +3,34 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>保洁服务平台</title>
+	<link rel="stylesheet" type="text/css" href="<%= stylesheet_path 'bootstrap.min' %>">
 	<%= stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'front', media:'all','data-turbolinks-track' => true %>
 </head>
 <body>
 	<!--container start-->
-	<div class="container">
+	<div class="container1">
 	<!--head start-->
 	<div class="head">
 	    <div class="headcon">
-	       <div class="headcon_l">您好，欢迎光临XX网站！</div>
+	       <div class="headcon_l">
+	       	<% if @userName != nil %>
+	       		<div class="btn-group">
+				  <button type="button" class="btn btn-default btn-sm dropdown-toggle top-btn" data-toggle="dropdown" aria-expanded="false">
+				    您好<%= @userName %> <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu top-dropdown-menu" role="menu">
+				  	<li><a href="#">我的订单</a></li>
+				    <li><a href="#">个人中心</a></li>
+				    <li><%= link_to '退出','/users/logout' %></li>
+				  </ul>
+				</div>，欢迎光临XX网站！
+	       	<% end %>
+	       	</div>
 	       <div class="headcon_r">
-			<%= link_to "登录",'users/login' %>
-	       <!-- <a href="">登陆</a>  -->| <a href="">注册</a>
+	       	<% if @userName == nil %>
+	       		<%= link_to "登录",'users/login' %>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a>
+	       	<% end %>
 	       </div>
 	    </div>
 	</div>
@@ -44,7 +60,10 @@
 	<!--banner start-->
 	<div class="banner">
 	   <div class="bannercon">
-	       <div class="bannercon_l">
+	       
+	       <div class="row">
+            <div class="col-lg-8" style="width:60%;">
+                <div class="bannercon_l">
 	           <h1>最值得信赖的保洁服务平台</h1>
 	           <p><a href="">
 	           	<%= image_tag('front/pic1.png',width:'333',height:'60')%>
@@ -53,9 +72,18 @@
 	           	<%= image_tag('front/pic2.png',width:'333',height:'60')%>
 	           	</a></p>
 	       </div>
-	       <div class="bannercon_r">扫下方微信二维码预定更方便<br/>
-	       <%= image_tag('front/2wm.jpg',width:'172',height:'172')%>
-	       </div>
+            </div>
+            <div class="col-lg-4" style="text-align:center">
+            	<div style="margin-top:230px;">
+            		<div class="col-lg-12 ewm-text">扫下方微信二维码预定更方便</div>
+		       		<div class="col-lg-12">
+		       			<%= image_tag('front/2wm.jpg',width:'172',height:'172')%>
+		       		</div>
+            	</div>
+                
+            </div>
+           </div>
+       </div>
 	   </div>
 	</div>
 	<!--banner end-->

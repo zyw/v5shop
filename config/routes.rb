@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'users/login' => 'users#login'
 
   get 'users/logout' => 'users#logout'
+
+  post 'users/login_post' => 'users#loginPost', as: 'user_login_post'
   
   resources :users
 
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
 
   get 'managers/logout',as: 'manager_logout'
 
-  post 'managers/login_post' => 'managers#loginPost', as: 'manager_longin_post'
+  post 'managers/login_post' => 'managers#loginPost', as: 'manager_login_post'
 
   post 'managers/reset_pwd' => 'managers#resetPassword',as: 'manager_reset_pwd'
 
