@@ -29,10 +29,9 @@
                     <button id="user_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                 </div>
              </div>
-          <table class="table table-bordered table-hover table-striped">
+          <table id="admin-division-table" class="table-striped table-advance table-hover">
                 <thead>
                   <tr>
-                      <th>ID</th>
                       <th>名称</th>
                       <th>创建时间</th>
                       <th>操作</th>
@@ -40,8 +39,7 @@
               </thead>
                 <tbody>
                   <% @admin_divisions.each do |ad| %>
-                    <tr>
-                      <td><%= ad.id %></td>
+                    <tr data-tt-id="<%= ad.id %>" <% if ad.parent_id != 0%>data-tt-parent-id="<%= ad.parent_id %>"<%end%>>
                       <td><%= ad.name %></td>
                       <td><%= date_format(ad.created_at) %></td>
                       <td>
@@ -55,18 +53,10 @@
                   <% end %>
               </tbody>
             </table>
-            <div class="box-footer clearfix">
-              <div class="pull-left" style="line-height:70px;">
-                <%= page_entries_info @admin_divisions %>
-              </div>
-              <div class="pull-right">
-                <%= paginate @admin_divisions %>
-              </div>
-              
-            </div>
+            
         </div><!-- /.box-body -->
     </div>
-    <script src="<%= javascript_path('jquery-treetable')%>" type="text/javascript"></script>
+    <script src="<%= javascript_path('jquery.treetable')%>" type="text/javascript"></script>
     <input type="hidden" id="adminDivision_message" value="<%= notice %>">
     <input type="hidden" id="adminDivision_alert" value="<%= alert %>">
     <script type="text/javascript">
@@ -84,6 +74,7 @@
         $("#addAdminDivision").click(function(){
           location.href = '<%= new_admin_division_path %>';
         })
+        $("#admin-division-table").treetable({ expandable: true,initialState:'expanded' });
         $("#user_search_btn").click(function(){
           var search_txt = $("#user_search").val();
           location.href = "<%= users_path%>?search_txt=" +search_txt;

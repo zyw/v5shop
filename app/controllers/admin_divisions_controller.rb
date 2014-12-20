@@ -4,13 +4,14 @@ class AdminDivisionsController < ApplicationController
   # GET /admin_divisions
   # GET /admin_divisions.json
   def index
-    search_txt = params['search_txt']
-    if search_txt != nil && search_txt != ""
-      @search_txt = search_txt
-      @admin_divisions = AdminDivision.where("name LIKE '%#{search_txt}%'").order("created_at desc").page params[:page]
-    else
-      @admin_divisions = AdminDivision.order("created_at desc").page params[:page]
-    end
+    @admin_divisions = AdminDivision.find_by_sql("select * from admin_divisions order by concat(parent_ids,id) asc")
+    #search_txt = params['search_txt']
+    #if search_txt != nil && search_txt != ""
+    #  @search_txt = search_txt
+    #  @admin_divisions = AdminDivision.where("name LIKE '%#{search_txt}%'").order("created_at desc").page params[:page]
+    #else
+    #  @admin_divisions = AdminDivision.order("created_at desc").page params[:page]
+    #end
   end
 
   # GET /admin_divisions/1
@@ -24,10 +25,12 @@ class AdminDivisionsController < ApplicationController
     pid = params['pid']
     if pid == nil
       @admin_division.parent_id = 0
+      @admin_division.parent_ids = '0/'
       @parentLabel = '一级区划'
     else
-      ad = AdminDivision.find_by(pid)
+      ad = AdminDivision.find_by(id: pid)
       @admin_division.parent_id = ad.id
+      @admin_division.parent_ids = "#{ad.parent_ids}#{ad.id}/"
       @parentLabel = ad.name
     end
   end
@@ -46,7 +49,7 @@ class AdminDivisionsController < ApplicationController
   # POST /admin_divisions.json
   def create
     @admin_division = AdminDivision.new(admin_division_params)
-
+    # @admin_division.parent_ids = "#{@admin_division.parent_ids}#{@admin_division.parent_id}/";
     respond_to do |format|
       if @admin_division.save
         format.html { redirect_to :admin_divisions, notice: 'Admin division was successfully created.' }
@@ -90,6 +93,6 @@ class AdminDivisionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_division_params
-      params.require(:admin_division).permit(:name, :parent_id)
+      params.require(:admin_division).permit(:name, :parent_id,:parent_ids)
     end
 end
