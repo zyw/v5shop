@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :products
 
   post 'product/picture/upload' => 'products#pictureUpload'
-
+  get 'product/list' => 'products#list', as: 'product_list'
   # 字典
   resources :dicts
 

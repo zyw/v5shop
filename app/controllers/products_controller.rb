@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  layout "front",only:[:list]
   # GET /products
   # GET /products.json
   def index
@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
     else
       @products = Product.order("created_at desc").page params[:page]
     end
+  end
+
+  def list
+    @products = Product.all
   end
 
   # GET /products/1

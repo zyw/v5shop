@@ -1,62 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>保洁服务平台</title>
-	<link rel="stylesheet" type="text/css" href="<%= stylesheet_path 'bootstrap.min' %>">
-	<%= stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'front', media:'all','data-turbolinks-track' => true %>
-</head>
-<body>
-	<!--container start-->
-	<div class="container1">
-	<!--head start-->
-	<div class="head">
-	    <div class="headcon">
-	       <div class="headcon_l">
-	       	<% if @userName != nil %>
-	       		<div class="btn-group">
-				  <button type="button" class="btn btn-default btn-sm dropdown-toggle top-btn" data-toggle="dropdown" aria-expanded="false">
-				    您好<%= @userName %> <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu top-dropdown-menu" role="menu">
-				  	<li><a href="#">我的订单</a></li>
-				    <li><a href="#">个人中心</a></li>
-				    <li><%= link_to '退出','/users/logout' %></li>
-				  </ul>
-				</div>，欢迎光临XX网站！
-	       	<% end %>
-	       	</div>
-	       <div class="headcon_r">
-	       	<% if @userName == nil %>
-	       		<%= link_to "登录",'users/login' %>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a>
-	       	<% end %>
-	       </div>
-	    </div>
-	</div>
-	<!--head end-->
-	<!--top start--> 
-	<div class="top">
-	     <div class="topcon">
-	         <div class="topcon_l">LOGO</div>
-	         <div class="topcon_r">
-	            <div class="dh">
-	            	<%= image_tag('front/dh.jpg',width:'251',height:'30')%>
-	            </div>
-	            <div class="clear"></div>
-	            <div class="menu">
-	                <ul> 
-	                    <li><a href="index.html">网站首页</a></li>
-	                    <li><a href="about.html">快速下单</a></li>
-	                    <li><a href="fwlc.html">服务项目</a></li>
-	                    <li><a href="anli.html">客户案例</a></li>
-	                    <li><a href="lxwm.html">联系我们</a></li>
-	                </ul>
-	            </div>
-	         </div>
-	     </div> 
-	</div>
-	<!--top end-->
+
 	<!--banner start-->
 	<div class="banner">
 	   <div class="bannercon">
@@ -68,9 +10,9 @@
 	           <p><a href="">
 	           	<%= image_tag('front/pic1.png',width:'333',height:'60')%>
 	           	</a></p>
-	           <p><a href="">
-	           	<%= image_tag('front/pic2.png',width:'333',height:'60')%>
-	           	</a></p>
+	           <p>
+	           <%= link_to image_tag('front/pic2.png',width:'333',height:'60'),product_list_path%>
+	           </p>
 	       </div>
             </div>
             <div class="col-lg-4" style="text-align:center">
@@ -210,16 +152,3 @@
 	    </div>
 	</div>
 	<!--fwlc end-->
-	<!--footer start-->
-	<div class="footer">
-	    <div class="footercon">
-	         <div class="footer_links"><a href="">网站首页</a>　|　<a href="">快速下单</a>　|　<a href="">服务项目</a>　|　<a href="">客户案例</a>　|　<a href="#">联系我们</a>
-	        </div>
-	        <p>Copyright@2014 XXX 版权所有 陕ICP备123456789号</p>
-	    </div>
-	</div>
-	<!--footer end-->
-	</div>
-	<!--container end-->	 
-</body>
-</html>

@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-	layout false
+	layout "front"
 	def index
 		user_id = session['user_id']
 		if user_id !=nil
