@@ -67,6 +67,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # 前端方法
+
   def login
     @user = User.new
   end

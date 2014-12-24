@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :dict_types
 
   # 会员
-  get 'users/login' => 'users#login'
+  get 'users/login' => 'users#login', as: 'user_login'
 
-  get 'users/logout' => 'users#logout'
+  get 'users/logout' => 'users#logout',as: 'user_logout'
 
   post 'users/login_post' => 'users#loginPost', as: 'user_login_post'
   

@@ -29,7 +29,7 @@
 	       	</div>
 	       <div class="headcon_r">
 	       	<% if @userName == nil %>
-	       		<%= link_to "登录",'users/login' %>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a>
+	       		<%= link_to "登录",user_login_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a>
 	       	<% end %>
 	       </div>
 	    </div>
@@ -46,9 +46,9 @@
 	            <div class="clear"></div>
 	            <div class="menu">
 	                <ul> 
-	                    <li><a href="index.html">网站首页</a></li>
+	                    <li><%= link_to '网站首页',:root %></li>
 	                    <li><a href="about.html">快速下单</a></li>
-	                    <li><%= link_to '服务项目',product_list_path %><!-- <a href="fwlc.html">服务项目</a> --></li>
+	                    <li><%= link_to '服务项目',product_list_path %></li>
 	                    <li><a href="anli.html">客户案例</a></li>
 	                    <li><a href="lxwm.html">联系我们</a></li>
 	                </ul>

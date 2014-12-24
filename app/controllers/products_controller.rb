@@ -13,10 +13,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def list
-    @products = Product.all
-  end
-
   # GET /products/1
   # GET /products/1.json
   def show
@@ -88,6 +84,12 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: '成功删除产品信息。' }
       format.json { head :no_content }
     end
+  end
+
+  # 前端方法
+
+  def list
+    @products = Product.all
   end
 
   private

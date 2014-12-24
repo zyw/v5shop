@@ -6,7 +6,8 @@ ul, li { list-style-type: none; }
 body, input, select, button, textarea { font-size: 12px; }
 button { cursor: pointer; }
 i, em, cite { font-style: normal; }
-body { background-color:#fff; color: #333333;}
+body {font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
+font-size: 14px; background-color:#fff; color: #333333;}
 a, a:link {  text-decoration: none; }
 a:visited {  }
 a:active, a:hover { text-decoration: underline; }
