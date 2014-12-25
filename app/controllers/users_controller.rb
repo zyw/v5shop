@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_login,only: [:index,:show,:destroy]
-  layout false,only: [:login,:logout]
+  layout "loginReg",only: [:login,:register]
   # GET /users
   # GET /users.json
   def index
@@ -70,7 +70,8 @@ class UsersController < ApplicationController
   # 前端方法
 
   def login
-    @user = User.new
+    # @user = User.new
+    @title = "会员登录"
   end
   def loginPost
     user = User.find_by(name:params[:name])
@@ -85,6 +86,25 @@ class UsersController < ApplicationController
   def logout
     reset_session
     redirect_to :root
+  end
+
+  def register
+    @user = User.new
+    @title = "会员注册"
+  end
+
+  def regPost
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to :users, notice: '新增用户成功！' }
+        format.json { render :users, status: :created, location: @user }
+      else
+        format.html { render :users }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

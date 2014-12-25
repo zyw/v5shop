@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   get 'users/logout' => 'users#logout',as: 'user_logout'
 
   post 'users/login_post' => 'users#loginPost', as: 'user_login_post'
-  
+
+  get 'users/register' => 'users#register', as: 'user_register'
+
+  post 'users/reg_post' => 'users#regPost', as: 'user_register_post'
+
   resources :users
 
   # 管理员

@@ -29,7 +29,9 @@
 	       	</div>
 	       <div class="headcon_r">
 	       	<% if @userName == nil %>
-	       		<%= link_to "登录",user_login_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a>
+	       		<%= link_to "登录",user_login_path %>
+	       		&nbsp;&nbsp;|&nbsp;&nbsp;
+	       		<%= link_to '注册',user_register_path %>
 	       	<% end %>
 	       </div>
 	    </div>
