@@ -18,19 +18,21 @@
     <!--top end-->
     <div class="row" style="background-color: #f1f1f1;margin-right: 0; margin-left: 0;">
         <div class="container" style="padding: 0 70px;margin-top: 10px;">
+            <% @products.each do |product|  %>
             <div class="col-md-3 col-xs-6">
                 <div class="thumbnail">
-                <%= image_tag('front/pic1.jpg')%>
-                <div class="caption">
-                    <h4>室内保洁</h4>
-                    <p>专业培训、标准化服务</p>
-                    <p><span>￥25元/小时</span>
-                        <!-- <a href="#" class="btn btn-warning" role="button">立即预约</a> -->
-                        <%= link_to '立即预约',"/carts/1",class:'btn btn-warning'%>
-                    </p>
+                <img src="<%= product.picture%>">
+                    <div class="caption">
+                        <h4><%= product.name %></h4>
+                        <p><%= product.intro%></p>
+                        <p><span>￥<%= product.feeScale%></span>
+                            <!-- <a href="#" class="btn btn-warning" role="button">立即预约</a> -->
+                            <%= link_to '立即预约',carts_list_path(product),class:'btn btn-warning'%>
+                        </p>
+                    </div>
                 </div>
             </div>
-            </div>
+            <% end %>
             <div class="col-md-3 col-xs-6">
                 <div class="thumbnail">
                     <%= image_tag('front/pic1.jpg')%>

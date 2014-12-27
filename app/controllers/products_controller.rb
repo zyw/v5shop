@@ -20,8 +20,8 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @proStatues = Dict.where(dict_type_id: 3)
-    @chargeTypes = Dict.where(dict_type_id: 6)
+    @proStatues = Dict.where(dict_type_id: 2)
+    @chargeTypes = Dict.where(dict_type_id: 1)
     @product = Product.new
   end
 
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
       Dir.mkdir(Rails.root.join('public','uploads','product_imgs'),0700)
     end
     img_name = "#{DateTime.now.to_i}#{File.extname(uploaded_io.original_filename)}"
-    img_path = "uploads/product_imgs/#{img_name}"
+    img_path = "/uploads/product_imgs/#{img_name}"
     File.open(Rails.root.join('public', 'uploads','product_imgs', img_name), 'wb') do |file|
       file.write(uploaded_io.read)
     end
@@ -89,7 +89,7 @@ class ProductsController < ApplicationController
   # 前端方法
 
   def list
-    @products = Product.all
+    @products = Product.where(status:'1')
   end
 
   private
