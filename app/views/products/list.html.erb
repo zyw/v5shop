@@ -25,8 +25,7 @@
                     <div class="caption">
                         <h4><%= product.name %></h4>
                         <p><%= product.intro%></p>
-                        <p><span>￥<%= product.feeScale%></span>
-                            <!-- <a href="#" class="btn btn-warning" role="button">立即预约</a> -->
+                        <p class="btnp"><span>￥<%= product.feeScale%></span>
                             <%= link_to '立即预约',carts_list_path(product),class:'btn btn-warning'%>
                         </p>
                     </div>
