@@ -351,14 +351,23 @@
                                 <small class="badge pull-right bg-red">3</small>
                             </a>
                         </li>
-                        <li>
-                            <%= link_to(products_path) do%>
-                                <i class="fa fa-shopping-cart"></i> <span>产品管理</span>
-                            <% end %>
-                            <!-- <a href="mailbox.html">
-                                <i class="fa fa-shopping-cart"></i> <span>商品管理</span>
-                                <small class="badge pull-right bg-yellow">2</small>
-                            </a> -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-user"></i> <span>产品管理</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <%= link_to(products_path) do%>
+                                    <i class="fa fa-angle-double-right"></i> 产品管理
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to(product_classifies_path) do%>
+                                    <i class="fa fa-angle-double-right"></i> 产品分类
+                                    <% end %>
+                                </li>
+                            </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">

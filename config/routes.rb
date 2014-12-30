@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 
   post 'product/picture/upload' => 'products#pictureUpload'
   get 'product/list' => 'products#list', as: 'product_list'
+  get 'product/list/:pcid' => 'products#list',as: 'product_list_s'
+
+  # 产品分类
+  resources :product_classifies
+
   # 字典
   resources :dicts
 

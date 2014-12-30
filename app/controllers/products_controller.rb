@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
   def new
     @proStatues = Dict.where(dict_type_id: 2)
     @chargeTypes = Dict.where(dict_type_id: 1)
+    @pcs = ProductClassify.all
     @product = Product.new
   end
 
@@ -29,6 +30,7 @@ class ProductsController < ApplicationController
   def edit
     @proStatues = Dict.where(dict_type_id: 3)
     @chargeTypes = Dict.where(dict_type_id: 6)
+    @pcs = ProductClassify.all
   end
 
   # POST /products
@@ -89,7 +91,14 @@ class ProductsController < ApplicationController
   # 前端方法
 
   def list
-    @products = Product.where(status:'1')
+    pcid = params[:pcid]
+    puts "eeeeeeeee #{pcid}"
+    if pcid
+      @products = Product.where(status:'1',product_classify_id:pcid)
+    else
+      @products = Product.where(status:'1')
+    end
+    @pcs = ProductClassify.all
   end
 
   private

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product_classify.name %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @product_classify.intro %>
+</p>
+
+<%= link_to 'Edit', edit_product_classify_path(@product_classify) %> |
+<%= link_to 'Back', product_classifies_path %>
