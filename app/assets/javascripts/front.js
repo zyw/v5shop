@@ -15,3 +15,4 @@
 //= require bootstrap.min
 //= require toastr.min
 //= require front/sweet-alert.min
+//= require front/spinner.min

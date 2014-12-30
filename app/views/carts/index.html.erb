@@ -31,8 +31,32 @@
                     </a>
                 </div>
                 <div class="col-xs-2"><%= p.feeScale %></div>
-                <div class="col-xs-2">数量</div>
-                <div class="col-xs-1">
+                <div class="col-xs-2">
+                    <% if p.charge_type == 'area'%>
+                        <select class="form-control area-select">
+                            <% @areas.each do |area|%>
+                                <%= content_tag(:option, area.name, value: area.value) %>
+                            <% end %>
+                        </select>
+                    <% else %>
+                        <div id="spinner">
+                            <div class="input-group" style="width:150px;">
+                              <div class="spinner-buttons input-group-btn">
+                                  <button type="button" class="btn spinner-up btn-warning">
+                                      <i class="glyphicon glyphicon-plus"></i>
+                                  </button>
+                              </div>
+                              <input type="text" class="form-control spinner-input" maxlength="3" readonly>
+                              <div class="spinner-buttons input-group-btn">
+                                  <button type="button" class="btn spinner-down btn-danger">
+                                      <i class="glyphicon glyphicon-minus"></i>
+                                  </button>
+                              </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="col-xs-1" style="padding-left:28px;">
                     <a href="javascript:;" data-pid='<%= p.id %>' class="btn btn-default cart-btn">
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
@@ -51,6 +75,7 @@
 <% end %>
 <script type="text/javascript">
     $(function(){
+        $('#spinner').spinner({value:1, min: 1, max: 200});
         $(".cart-btn").click(function(){
             var $remove = $(this);
             var pid = $(this).data("pid");

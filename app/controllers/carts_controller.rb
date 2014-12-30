@@ -8,6 +8,7 @@ class CartsController < ApplicationController
 		else
 			@products = []
 		end
+		@areas = Dict.where(dict_type_id: 3)
 	end
 
 	def add
