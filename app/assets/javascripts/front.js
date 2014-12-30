@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require toastr.min
+//= require front/sweet-alert.min

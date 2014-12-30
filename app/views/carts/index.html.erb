@@ -1,6 +1,18 @@
 <div class="container next-banner">
-        <%= image_tag('front/banner_03.jpg',width:'1000')%>
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<% if @products.empty? %>
+    <div class="container bs-container" style="padding:60px 0;">
+        <div class="col-xs-offset-2 col-xs-6">
+            <h1>
+                <i class="glyphicon glyphicon-shopping-cart" style="font-size:50px;"></i> 您还没有选择服务。
+            </h1>
+        </div>
+        <div class="col-xs-2" style="line-height:80px;">
+            <%= link_to '赶紧选择',product_list_path,class:"btn btn-warning"%>
+        </div>
     </div>
+<% else %>
     <div class="container bs-container">
         <div class="row shead">
             <div class="col-xs-7 first">服务</div>
@@ -8,42 +20,66 @@
             <div class="col-xs-2">数量</div>
             <div class="col-xs-1">操作</div>
         </div>
-        <div class="row slist">
-            <div class="col-xs-7 first">
-                <a href="#">
-                    <%= image_tag('front/pic1.jpg',width:'100',height:'130')%>
-                </a>
-                <a href="#" class="cattitle">
-                    室内保洁
-                </a>
+        <% @products.each do |p|%>
+            <div class="row slist">
+                <div class="col-xs-7 first">
+                    <a href="javascript:;">
+                        <img src="<%= p.picture %>" width="100" height="130">
+                    </a>
+                    <a href="javascript:;" class="cattitle">
+                        <%= p.name %>
+                    </a>
+                </div>
+                <div class="col-xs-2"><%= p.feeScale %></div>
+                <div class="col-xs-2">数量</div>
+                <div class="col-xs-1">
+                    <a href="javascript:;" data-pid='<%= p.id %>' class="btn btn-default cart-btn">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
             </div>
-            <div class="col-xs-2">￥25元/小时</div>
-            <div class="col-xs-2">数量</div>
-            <div class="col-xs-1">
-                <i class="glyphicon glyphicon-remove"></i>
-            </div>
-        </div>
-        <div class="row slist">
-            <div class="col-xs-7 first">
-                <a href="#">
-                    <%= image_tag('front/pic1.jpg',width:'100',height:'130')%>
-                </a>
-                <a href="#" class="cattitle">
-                    室内保洁
-                </a>
-            </div>
-            <div class="col-xs-2">￥25元/小时</div>
-            <div class="col-xs-2">数量</div>
-            <div class="col-xs-1">
-                <i class="glyphicon glyphicon-remove"></i>
-            </div>
-        </div>
+        <% end %>
     </div>
     <div class="container bs-container container-bg">
         <div class="col-xs-offset-9 col-xs-1">
-            <a class="btn btn-default" href="#">继续选择</a>
+            <%= link_to '继续选择',product_list_path,class:"btn btn-default"%>
         </div>
         <div class="col-xs-2" style="text-align: center;">
             <a class="btn btn-warning" href="#">下一步</a>
         </div>
     </div>
+<% end %>
+<script type="text/javascript">
+    $(function(){
+        $(".cart-btn").click(function(){
+            var $remove = $(this);
+            var pid = $(this).data("pid");
+            swal({
+                title: "温馨提示",
+                text: "确定要移除该服务吗？",
+                type: "info", 
+                showCancelButton: true,
+                confirmButtonText: "确认删除",
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: "取消"},
+                    function(){
+                        $.ajax({
+                            url:'<%= cart_remove_path %>',
+                            dataType:'json',
+                            data:{id:pid},
+                            success:function(data){
+                                if(data.status === 2){
+                                    location.reload();
+                                }else{
+                                    $remove.parent().parent().detach();
+                                }
+                            },
+                            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                                toastr.error("购物车移除服务失败！");
+                            }
+                        })
+                    }
+                );
+        });
+    });
+</script>

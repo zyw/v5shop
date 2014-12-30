@@ -53,7 +53,9 @@ Rails.application.routes.draw do
   get 'admins/new'
 
   # 购物车
-  get 'carts/:id' => 'carts#index',as: 'carts_list'
+  get 'carts/index' => 'carts#index',as: 'carts_list'
+  get 'carts/add/:id' => 'carts#add',as: 'cart_add'
+  get 'carts/remove' => 'carts#remove',as: 'cart_remove'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

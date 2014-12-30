@@ -12,4 +12,6 @@
  *
  *= require front/css
  *= require front/global
+ *= require front/sweet-alert
+ *= require toastr.min
  */

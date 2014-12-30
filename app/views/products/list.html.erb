@@ -7,7 +7,6 @@
         <div class="col-md-8">
             <div class="row pull-right filtrate">
                 <div class="col-xs-2">
-                    <!-- <a href="#" class="btn btn-warning pitch">全部</a> -->
                     <%= link_to '全部',product_list_path,class:'btn btn-warning pitch'%>
                 </div>
                 <% @pcs.each do |pc|%>
@@ -34,7 +33,7 @@
                         <h4><%= product.name %></h4>
                         <p><%= product.intro%></p>
                         <p class="btnp"><span>￥<%= product.feeScale%></span>
-                            <%= link_to '立即预约',carts_list_path(product),class:'btn btn-warning'%>
+                            <%= link_to '立即预约',cart_add_path(product),class:'btn btn-warning'%>
                         </p>
                     </div>
                 </div>
