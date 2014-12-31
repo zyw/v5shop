@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def pictureUpload
-    uploaded_io = params['file']
+    uploaded_io = params[:file]
     if !(Dir.exist?(Rails.root.join('public', 'uploads')))
       Dir.mkdir(Rails.root.join('public','uploads'),0700)
     end
