@@ -1,0 +1,109 @@
+<link rel="stylesheet" type="text/css" href="<%= stylesheet_path 'jquery-treetable' %>">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        导航列表
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">导航列表</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">导航列表</h3>
+            <div class="box-tools">
+                <div class="pull-right">
+                  <button id="addNav" type="button" class="btn btn-success" data-toggle='tooltip' data-placement="top" title="导航列表"><i class="fa fa-plus"></i> 添加导航</button>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <div class="input-group col-lg-3" style="margin-bottom:20px;">
+                <input type="text" name="user_search" id="user_search" class="form-control input-sm" placeholder="查询" value="<%= @search_txt%>">
+                <div class="input-group-btn">
+                    <button id="user_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                </div>
+             </div>
+          <table id="nav-table" class="table-striped table-advance table-hover">
+                <thead>
+                  <tr>
+                      <th>名称</th>
+                      <th>URL</th>
+                      <th>打开方式</th>
+                      <th>状态</th>
+                      <th>排序</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  <% @navs.each do |nav| %>
+                    <tr data-tt-id="<%= nav.id %>" <% if nav.parent_id != 0%>data-tt-parent-id="<%= nav.parent_id %>"<%end%>>
+                      <td><%= nav.name %></td>
+                      <td><%= nav.url %></td>
+                      <td>
+                        <% if nav.open_way == '_self'%>
+                          当前窗口
+                        <% else %>
+                          新窗口
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if nav.status == 1 %>
+                          显示
+                        <%elsif nav.status == 2%>
+                          隐藏
+                        <%else%>
+                          禁用
+                        <%end%>
+                      </td>
+                      <td><%= nav.sort_num %></td>
+                      <td><%= date_format(nav.created_at) %></td>
+                      <td>
+                      <a href="<%= new_nav_path%>?pid=<%= nav.id%>" class="btn btn-success btn-xs" data-toggle='tooltip' data-placement="top" title="添加子导航"><i class="fa fa-plus"></i></a>
+                        <a href="<%= edit_nav_path(nav)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
+                        <%= link_to(nav, method: :delete,data:{confirm:"您确认要删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
+                          <i class="fa fa-trash-o"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+              </tbody>
+            </table>
+            
+        </div><!-- /.box-body -->
+    </div>
+    <script src="<%= javascript_path('jquery.treetable')%>" type="text/javascript"></script>
+    <input type="hidden" id="nav_message" value="<%= notice %>">
+    <input type="hidden" id="nav_alert" value="<%= alert %>">
+    <script type="text/javascript">
+      $(function(){
+            var message = $("#nav_message").val();
+            if(message !== ''){
+                toastr.success(message);
+                $("#nav_message").val("");
+            }
+            var alertMsg = $("#nav_alert").val();
+            if(alertMsg !== ''){
+                toastr.error(alertMsg);
+                $("#nav_alert").val("");
+            }
+        $("#addNav").click(function(){
+          location.href = '<%= new_nav_path %>';
+        })
+        $("#nav-table").treetable({ expandable: true,initialState:'expanded' });
+        $("#user_search_btn").click(function(){
+          var search_txt = $("#user_search").val();
+          location.href = "<%= users_path%>?search_txt=" +search_txt;
+        })
+
+      })
+    </script>
+</section><!-- /.content -->
+
+

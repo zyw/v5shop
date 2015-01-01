@@ -1,0 +1,71 @@
+<%= form_for @nav,html:{class:'form-horizontal',role:'form'} do |f| %>
+  <% if @nav.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nav.errors.count, "error") %> prohibited this nav from being saved:</h2>
+
+      <ul>
+      <% @nav.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">父导航</label>
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :parent_ids %>
+    <div class="col-sm-8">
+      <input type="text" value="<%= @parentLabel%>" class="form-control" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">名称</label>
+    <div class="col-sm-8">
+      <%= f.text_field :name,class:"form-control",placeholder:"导航名称" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="url" class="col-sm-2 control-label">URL</label>
+    <div class="col-sm-8">
+      <%= f.text_field :url,class:"form-control",placeholder:'导航URL' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="sort_num" class="col-sm-2 control-label">序号</label>
+    <div class="col-sm-8">
+      <%= f.text_field :sort_num,class:"form-control",placeholder:'序号越小导航越靠前' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="open_way" class="col-sm-2 control-label">打开方式</label>
+    <div class="col-sm-8">
+      <%= f.select(:open_way,nil,{},class:'form-control') do %>
+        <%= content_tag(:option, '当前窗口', value: '_self') %>
+        <%= content_tag(:option, '新窗口', value: '_blank') %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+    <div class="col-sm-8">
+      <%= f.select(:status,nil,{},class:'form-control') do %>
+        <%= content_tag(:option, '显示', value: 1) %>
+        <%= content_tag(:option, '隐藏', value: 2) %>
+        <%= content_tag(:option, '禁用', value: 3) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">描述</label>
+    <div class="col-sm-8">
+      <%= f.text_area :intro,class:"form-control",row:3,placeholder:'描述' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+
+    <%= f.submit '保 存',class:'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
+

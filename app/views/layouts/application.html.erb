@@ -346,14 +346,14 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <small class="badge pull-right bg-red">3</small>
-                            </a>
+                            <%= link_to(navs_path) do%>
+                                <i class="fa fa-list-ul"></i> <span>栏目管理</span>
+                            <% end %>
+                            <!-- <small class="badge pull-right bg-red">3</small> -->
                         </li>
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-user"></i> <span>产品管理</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-barcode"></i> <span>产品管理</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
@@ -370,7 +370,7 @@
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="#">
+                            <a href="javascript:;">
                                 <i class="fa fa-user"></i> <span>用户管理</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -393,8 +393,8 @@
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-user"></i> <span>系统管理</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-cogs"></i> <span>系统管理</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">

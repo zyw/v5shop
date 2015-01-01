@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @nav.name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @nav.url %>
+</p>
+
+<p>
+  <strong>Open way:</strong>
+  <%= @nav.open_way %>
+</p>
+
+<p>
+  <strong>Sort num:</strong>
+  <%= @nav.sort_num %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @nav.status %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @nav.parent_id %>
+</p>
+
+<p>
+  <strong>Parent ids:</strong>
+  <%= @nav.parent_ids %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @nav.intro %>
+</p>
+
+<%= link_to 'Edit', edit_nav_path(@nav) %> |
+<%= link_to 'Back', navs_path %>

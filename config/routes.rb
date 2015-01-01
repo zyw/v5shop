@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :navs
+
   #行政区划管理
   resources :admin_divisions
 
