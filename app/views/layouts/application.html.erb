@@ -290,10 +290,10 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="../index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-dashboard"></i> <span>仪表板</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="widgets.html">
                                 <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
                             </a>
@@ -334,15 +334,19 @@
                                 <li><a href="forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
                                 <li><a href="forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-table"></i> <span>内容管理</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                                <li>
+                                    <%= link_to(contents_path) do%>
+                                    <i class="fa fa-angle-double-right"></i> 内容管理
+                                    <% end %>
+                                </li>
+                                <li><a href="tables/data.html"><i class="fa fa-angle-double-right"></i> 内容类型</a></li>
                             </ul>
                         </li>
                         <li>

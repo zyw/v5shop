@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101120929) do
+ActiveRecord::Schema.define(version: 20150101143646) do
 
   create_table "addresses", force: true do |t|
     t.string   "contacts"
@@ -31,6 +31,25 @@ ActiveRecord::Schema.define(version: 20150101120929) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "parent_ids"
+  end
+
+  create_table "contents", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "nav_id"
+    t.integer  "stick"
+    t.integer  "stick_num"
+    t.integer  "status"
+    t.string   "pics"
+    t.string   "dispics"
+    t.string   "cattas"
+    t.integer  "manager_id"
+    t.string   "content_classify_id"
+    t.string   "content_seo"
+    t.string   "author"
+    t.string   "source_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dict_types", force: true do |t|

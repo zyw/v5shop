@@ -1,0 +1,73 @@
+<%= form_for(@content) do |f| %>
+  <% if @content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+      <% @content.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :nav_id %><br>
+    <%= f.number_field :nav_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stick %><br>
+    <%= f.number_field :stick %>
+  </div>
+  <div class="field">
+    <%= f.label :stick_num %><br>
+    <%= f.number_field :stick_num %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :pics %><br>
+    <%= f.text_field :pics %>
+  </div>
+  <div class="field">
+    <%= f.label :dispics %><br>
+    <%= f.text_field :dispics %>
+  </div>
+  <div class="field">
+    <%= f.label :cattas %><br>
+    <%= f.text_field :cattas %>
+  </div>
+  <div class="field">
+    <%= f.label :manager_id %><br>
+    <%= f.number_field :manager_id %>
+  </div>
+  <div class="field">
+    <%= f.label :content_classify_id %><br>
+    <%= f.text_field :content_classify_id %>
+  </div>
+  <div class="field">
+    <%= f.label :content_seo %><br>
+    <%= f.text_field :content_seo %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :source_url %><br>
+    <%= f.text_field :source_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
