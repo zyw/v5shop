@@ -92,7 +92,6 @@ class ProductsController < ApplicationController
 
   def list
     pcid = params[:pcid]
-    puts "eeeeeeeee #{pcid}"
     if pcid
       @products = Product.where(status:'1',product_classify_id:pcid)
     else
