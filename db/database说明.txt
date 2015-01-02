@@ -1,4 +1,4 @@
-#µ¼º½
+ï»¿#å¯¼èˆª
 name
 url
 sortNum
@@ -8,17 +8,17 @@ parent_id
 parent_ids
 intro
 
-#ÄÚÈİ
+#å†…å®¹
 name
 content
 nav_id
 stick
 stick_num
-status		×´Ì¬ 0:´ıÉóºË£¬1:²İ¸å£¬2:·¢²¼
-pics		ÄÚÈİÍ¼Æ¬£¬¶à¸öÍ¼Æ¬Ê¹ÓÃ¶ººÅ·Ö¸î
-dispics		Õ¹Ê¾Í¼Æ¬£¬¶à¸öÕ¹Ê¾Í¼Æ¬Ê¹ÓÃ¶ººÅ·Ö¸î
-cattas		¹ØÁª¸½¼ş
-manager_id	ÄÚÈİ·¢²¼Õß
+status		çŠ¶æ€ 0:å¾…å®¡æ ¸ï¼Œ1:è‰ç¨¿ï¼Œ2:å‘å¸ƒ
+pics		å†…å®¹å›¾ç‰‡ï¼Œå¤šä¸ªå›¾ç‰‡ä½¿ç”¨é€—å·åˆ†å‰²
+dispics		å±•ç¤ºå›¾ç‰‡ï¼Œå¤šä¸ªå±•ç¤ºå›¾ç‰‡ä½¿ç”¨é€—å·åˆ†å‰²
+cattas		å…³è”é™„ä»¶
+manager_id	å†…å®¹å‘å¸ƒè€…
 
 content_classify_id
 content_seo

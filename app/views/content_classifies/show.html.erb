@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @content_classify.name %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @content_classify.intro %>
+</p>
+
+<%= link_to 'Edit', edit_content_classify_path(@content_classify) %> |
+<%= link_to 'Back', content_classifies_path %>

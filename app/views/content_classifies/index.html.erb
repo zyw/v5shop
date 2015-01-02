@@ -1,0 +1,94 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        内容类型列表
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">内容类型列表</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">内容类型列表</h3>
+            <div class="box-tools">
+                <div class="pull-right">
+                  <button id="addcc" type="button" class="btn btn-success" data-toggle='tooltip' data-placement="top" title="内容类型列表"><i class="fa fa-plus"></i> 添加内容类型</button>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <div class="input-group col-lg-3" style="margin-bottom:20px;">
+                <input type="text" name="dt_search" id="dt_search" class="form-control input-sm" placeholder="查询" value="<%= @search_txt%>">
+                <div class="input-group-btn">
+                    <button id="dt_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                </div>
+             </div>
+          <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>名称</th>
+                      <th>描述</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  <% @content_classifies.each do |content_classify| %>
+                    <tr>
+                      <td><%= content_classify.id %></td>
+                      <td><%= content_classify.name %></td>
+                      <td><%= content_classify.intro %></td>
+                      <td><%= date_format(content_classify.created_at) %></td>
+                      <td>
+                        <a href="<%= edit_content_classify_path(content_classify)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
+                        <%= link_to(content_classify, method: :delete,data:{confirm:"您确认要删除字典类型并把关联的字典也删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
+                          <i class="fa fa-trash-o"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+              </tbody>
+            </table>
+            <div class="box-footer clearfix">
+              <div class="pull-left" style="line-height:70px;">
+                <%= page_entries_info @content_classifies %>
+              </div>
+              <div class="pull-right">
+                <%= paginate @content_classifies %>
+              </div>
+              
+            </div>
+        </div><!-- /.box-body -->
+    </div>
+    <input type="hidden" id="cc_message" value="<%= notice %>">
+    <input type="hidden" id="cc_alert" value="<%= alert %>">
+    <script type="text/javascript">
+      $(function(){
+            var message = $("#cc_message").val();
+            if(message !== ''){
+                toastr.success(message);
+                $("#cc_message").val("");
+            }
+            var alertMsg = $("#cc_alert").val();
+            if(alertMsg !== ''){
+                toastr.error(alertMsg);
+                $("#cc_alert").val("");
+            }
+        $("#addcc").click(function(){
+          location.href = '<%= new_content_classify_path%>';
+        })
+        $("#dt_search_btn").click(function(){
+          var search_txt = $("#dt_search").val();
+          location.href = "<%= dict_types_path%>?search_txt=" +search_txt;
+        })
+
+      })
+    </script>
+</section><!-- /.content -->
+

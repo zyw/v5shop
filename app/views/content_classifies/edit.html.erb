@@ -1,15 +1,15 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        新增内容
+        修改内容类型
         <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
         <li>
-        	<%= link_to("内容列表",contents_path)%>
+        	<%= link_to("内容类型列表",dict_types_path)%>
         </li>
-        <li class="active">新增内容</li>
+        <li class="active">修改内容类型</li>
     </ol>
 </section>
 
@@ -17,7 +17,7 @@
 <section class="content">
 	<div class="box box-warning">
 	    <div class="box-header">
-	        <h3 class="box-title">新增内容</h3>
+	        <h3 class="box-title">修改内容类型</h3>
 	    </div><!-- /.box-header -->
 	    <div class="box-body">
 	        <%= render 'form' %>

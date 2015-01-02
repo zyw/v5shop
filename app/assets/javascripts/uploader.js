@@ -13,94 +13,103 @@ jQuery(function() {
         uploader,swf_path,
         swf_path = $("uploader_swf_path").val(),
         authenticity_token = $('meta[name=csrf-token]').attr('content');
-    // 初始化Web Uploader
-    uploader = WebUploader.create({
+    function initWebUploader(params){
+        var options = $.extend(params,{
+            server:'/product/picture/upload',
+            pick: '#filePicker',
+            startUploadBtn:'start_upload',
+            uploadUrl:'product_picture'
+        });
+        // 初始化Web Uploader
+        uploader = WebUploader.create({
 
-        // 自动上传。
-        //auto: false,
+            // 自动上传。
+            //auto: false,
 
-        // swf文件路径
-        swf: swf_path,
+            // swf文件路径
+            swf: swf_path,
 
-        // 文件接收服务端。
-        server: '/product/picture/upload',
+            // 文件接收服务端。
+            server: options.server,
 
-        // 选择文件的按钮。可选。
-        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-        pick: '#filePicker',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: options.pick,
 
-        // 只允许选择文件，可选。
-        accept: {
-            title: 'Images',
-            extensions: 'gif,jpg,jpeg,bmp,png',
-            mimeTypes: 'image/*'
-        },
-        formData:{authenticity_token: authenticity_token}
-    });
+            // 只允许选择文件，可选。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+            formData:{authenticity_token: authenticity_token}
+        });
 
-    $("#start_upload").on("click",function(){
-        uploader.upload();
-    });
+        $("#"+options.startUploadBtn).on("click",function(){
+            uploader.upload();
+        });
 
-    // 当有文件添加进来的时候
-    uploader.on( 'fileQueued', function( file ) {
-        var $li = $(
-                '<div id="' + file.id + '" class="file-item thumbnail">' +
-                    '<img>' +
-                    '<div class="info">' + file.name + '</div>' +
-                '</div>'
-                ),
-            $img = $li.find('img');
+        // 当有文件添加进来的时候
+        uploader.on( 'fileQueued', function( file ) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                        '<img>' +
+                        '<div class="info">' + file.name + '</div>' +
+                    '</div>'
+                    ),
+                $img = $li.find('img');
 
-        $list.append( $li );
+            $list.append( $li );
 
-        // 创建缩略图
-        uploader.makeThumb( file, function( error, src ) {
-            if ( error ) {
-                $img.replaceWith('<span>不能预览</span>');
-                return;
+            // 创建缩略图
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr( 'src', src );
+            }, thumbnailWidth, thumbnailHeight );
+        });
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on( 'uploadProgress', function( file, percentage ) {
+            var $li = $( '#'+file.id ),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if ( !$percent.length ) {
+                $percent = $('<p class="progress"><span></span></p>')
+                        .appendTo( $li )
+                        .find('span');
             }
 
-            $img.attr( 'src', src );
-        }, thumbnailWidth, thumbnailHeight );
-    });
+            $percent.css( 'width', percentage * 100 + '%' );
+        });
 
-    // 文件上传过程中创建进度条实时显示。
-    uploader.on( 'uploadProgress', function( file, percentage ) {
-        var $li = $( '#'+file.id ),
-            $percent = $li.find('.progress span');
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on( 'uploadSuccess', function( file,response) {
+            $("#"+options.uploadUrl).val(response.img_path)
+            $( '#'+file.id ).addClass('upload-state-done');
+        });
 
-        // 避免重复创建
-        if ( !$percent.length ) {
-            $percent = $('<p class="progress"><span></span></p>')
-                    .appendTo( $li )
-                    .find('span');
-        }
+        // 文件上传失败，现实上传出错。
+        uploader.on( 'uploadError', function( file ) {
+            var $li = $( '#'+file.id ),
+                $error = $li.find('div.error');
 
-        $percent.css( 'width', percentage * 100 + '%' );
-    });
+            // 避免重复创建
+            if ( !$error.length ) {
+                $error = $('<div class="error"></div>').appendTo( $li );
+            }
 
-    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-    uploader.on( 'uploadSuccess', function( file,response) {
-        $("#product_picture").val(response.img_path)
-        $( '#'+file.id ).addClass('upload-state-done');
-    });
+            $error.text('上传失败');
+        });
 
-    // 文件上传失败，现实上传出错。
-    uploader.on( 'uploadError', function( file ) {
-        var $li = $( '#'+file.id ),
-            $error = $li.find('div.error');
-
-        // 避免重复创建
-        if ( !$error.length ) {
-            $error = $('<div class="error"></div>').appendTo( $li );
-        }
-
-        $error.text('上传失败');
-    });
-
-    // 完成上传完了，成功或者失败，先删除进度条。
-    uploader.on( 'uploadComplete', function( file ) {
-        $( '#'+file.id ).find('.progress').remove();
-    });
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on( 'uploadComplete', function( file ) {
+            $( '#'+file.id ).find('.progress').remove();
+        });
+    }
+    window.initWebUploader = initWebUploader;
 });

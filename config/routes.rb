@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :content_classifies
+
   resources :contents
 
   resources :navs

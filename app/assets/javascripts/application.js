@@ -19,3 +19,7 @@
 //= require webuploader.min
 //= require site-setting
 //= require turbolinks
+//= require module.min
+//= require hotkeys.min
+//= require uploader.min
+//= require simditor.min

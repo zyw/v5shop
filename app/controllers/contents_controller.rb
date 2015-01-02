@@ -5,6 +5,7 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = Content.all
+    @content_classifes = ContentClassify.all
   end
 
   # GET /contents/1

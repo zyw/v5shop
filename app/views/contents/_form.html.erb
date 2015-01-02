@@ -1,4 +1,4 @@
-<%= form_for(@content) do |f| %>
+<%= form_for @content,html:{class:'form-horizontal',role:'form'} do |f| %>
   <% if @content.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
@@ -11,63 +11,102 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <label for="nav_id" class="col-sm-2 control-label">所属导航</label>
+    <div class="col-sm-8">
+      <%= f.hidden_field :nav_id %>
+      <input type="text" value="" placeholder="所属导航" class="form-control" readonly>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">名称</label>
+    <div class="col-sm-8">
+      <%= f.text_field :name,class:"form-control",placeholder:'名称' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :nav_id %><br>
-    <%= f.number_field :nav_id %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">状态</label>
+    <div class="col-sm-8">
+      <%= f.select(:status,nil,{},class:'form-control') do %>
+        <%= content_tag(:option, '待审核', value: 0) %>
+        <%= content_tag(:option, '草稿', value: 1) %>
+        <%= content_tag(:option, '发布', value: 2,selected:true) %>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :stick %><br>
-    <%= f.number_field :stick %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">SEO</label>
+    <div class="col-sm-8">
+      <%= f.text_area :content_seo,class:"form-control",rows:4,placeholder:'SEO' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :stick_num %><br>
-    <%= f.number_field :stick_num %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">内容分类</label>
+    <div class="col-sm-8">
+      <%= f.select(:content_classify_id,nil,{},class:'form-control') do %>
+        <% if @content_classifes.nil?%>
+          <%= content_tag(:option, '--还没有内容分类--', value: '') %>
+        <%else%>
+          <% @content_classifes.each do |cc|%>
+            <%= content_tag(:option, '待审核', value: 0) %>
+          <% end %>
+        <%end%>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.number_field :status %>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label" style="padding-top:12px;">置顶</label>
+    <div class="col-sm-8">
+      <label class="checkbox-inline" style="padding-left: 0;">
+        <%= f.select(:stick,nil,{},class:'form-control') do %>
+          <%= content_tag(:option, '否', value: 0) %>
+          <%= content_tag(:option, '是', value: 1) %>
+        <% end %>
+      </label>
+      <label class="checkbox-inline" style="padding-left: 0;">
+        <%= f.text_field :stick_num,class:"form-control",placeholder:'置顶序号' %>
+      </label>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :pics %><br>
-    <%= f.text_field :pics %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">图片资源</label>
+    <div class="col-sm-8">
+      <%= f.hidden_field :pics %>
+      <div id="fileList" class="uploader-list"></div>
+      <div class="row">
+        <div class="col-sm-2">
+          <!--dom结构部分-->
+          <div id="uploader-demo" class="wu-example">
+              <div id="filePicker">选择图片</div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button id="start_upload" type="button" style="float:right" class="btn btn-default">开始上传</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :dispics %><br>
-    <%= f.text_field :dispics %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">内容</label>
+    <div class="col-sm-8">
+      <%= f.text_area :content,class:"form-control",rows:4,placeholder:'内容' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :cattas %><br>
-    <%= f.text_field :cattas %>
-  </div>
-  <div class="field">
-    <%= f.label :manager_id %><br>
-    <%= f.number_field :manager_id %>
-  </div>
-  <div class="field">
-    <%= f.label :content_classify_id %><br>
-    <%= f.text_field :content_classify_id %>
-  </div>
-  <div class="field">
-    <%= f.label :content_seo %><br>
-    <%= f.text_field :content_seo %>
-  </div>
-  <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
-  <div class="field">
-    <%= f.label :source_url %><br>
-    <%= f.text_field :source_url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+
+    <%= f.submit '保 存',class:'btn btn-primary'%>
+    </div>
   </div>
 <% end %>
+<input type="hidden" id="uploader_swf_path" value="<%= asset_path('Uploader.swf')%>">
+<script src="<%= javascript_path('uploader')%>" type="text/javascript"></script>
+<script type="text/javascript">
+  $(function(){
+    initWebUploader({server:'',uploadUrl:'content_pics'});
+    var editor = new Simditor({
+      textarea: $('#content_content'),
+      upload:true
+    });
+  })
+</script>
