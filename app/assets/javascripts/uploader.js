@@ -18,10 +18,11 @@ jQuery(function() {
             server:'/product/picture/upload',
             pick: '#filePicker',
             startUploadBtn:'start_upload',
-            uploadUrl:'product_picture'
+            uploadUrl:'product_picture',
+            multiUpload:false
         });
         // 初始化Web Uploader
-        uploader = WebUploader.create({
+        var uploader = WebUploader.create({
 
             // 自动上传。
             //auto: false,
@@ -89,7 +90,13 @@ jQuery(function() {
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on( 'uploadSuccess', function( file,response) {
-            $("#"+options.uploadUrl).val(response.img_path)
+            var files = $("#"+options.uploadUrl).val();
+            if(multiUpload && files !== ''){
+                $("#"+options.uploadUrl).val(files + ',' + response.img_path);
+            }else{
+                $("#"+options.uploadUrl).val(response.img_path);
+            }
+            
             $( '#'+file.id ).addClass('upload-state-done');
         });
 
@@ -111,5 +118,54 @@ jQuery(function() {
             $( '#'+file.id ).find('.progress').remove();
         });
     }
+    
+    function initUploadVide(params){
+        var options = $.extend(params,{
+            server:'/product/picture/upload',
+            pick: '#fileVideo',
+            startUploadBtn:'start_upload',
+            uploadUrl:'content_cattas',
+            multiUpload:false
+        });
+        var uploader = WebUploader.create({
+            swf: swf_path,
+            server: options.server,
+            pick: options.pick,
+
+            // 只允许选择文件，可选。
+            accept: {
+                title: 'Video',
+                extensions: 'mp4,zip,rar,pdf',
+                mimeTypes: 'video/mpeg4,application/zip,application/x-rar-compressed,application/pdf'
+            },
+            formData:{authenticity_token: authenticity_token}
+        });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on( 'uploadSuccess', function( file,response) {
+            var files = $("#"+options.uploadUrl).val();
+            if(multiUpload && files !== ''){
+                $("#"+options.uploadUrl).val(files + ',' + response.img_path);
+            }else{
+                $("#"+options.uploadUrl).val(response.img_path);
+            }
+            
+            $( '#'+file.id ).addClass('upload-state-done');
+        });
+
+        // 文件上传失败，现实上传出错。
+        uploader.on( 'uploadError', function( file ) {
+            var $li = $( '#'+file.id ),
+                $error = $li.find('div.error');
+
+            // 避免重复创建
+            if ( !$error.length ) {
+                $error = $('<div class="error"></div>').appendTo( $li );
+            }
+
+            $error.text('上传失败');
+        });
+    }
     window.initWebUploader = initWebUploader;
+    window.initUploadVide = initUploadVide;
 });

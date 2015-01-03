@@ -78,6 +78,10 @@ class NavsController < ApplicationController
     end
   end
 
+  def tree_json
+    render json: nav_tree(nil)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_nav
@@ -87,5 +91,21 @@ class NavsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def nav_params
       params.require(:nav).permit(:name, :url, :open_way, :sort_num, :status, :parent_id, :parent_ids, :intro)
+    end
+
+    def nav_tree(navs)
+      if !navs
+        navs = Nav.where(parent_id:0)
+      end
+      treeArray = []
+      navs.each do |nav|
+        subNav = Nav.where(parent_id:nav.id)
+        treeNode = {id:nav.id,name:nav.name}
+        if subNav && !subNav.empty?
+          treeNode[:children] = nav_tree(subNav)
+        end
+        treeArray.push(treeNode)
+      end
+      return treeArray
     end
 end

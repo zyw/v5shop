@@ -16,8 +16,10 @@
  *= require AdminLTE
  *= require toastr.min
  *= require bootstrap-dialog.min
+ *= require jquery-treetable
  *= require bootstrapValidator.min
  *= require webuploader
  *= require common
  *= require simditor
+ *= require zTreeStyle
  */

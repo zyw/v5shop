@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :contents
 
+  get 'navs/json' => 'navs#tree_json', as: 'navs_json'
+
   resources :navs
 
   #行政区划管理
