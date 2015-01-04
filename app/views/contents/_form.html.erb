@@ -17,7 +17,7 @@
       <%= f.hidden_field :nav_id %>
       <input type="text" id="navTreeInput" placeholder="所属导航" class="form-control" value="" readonly>
       <span class="glyphicon glyphicon-chevron-down form-control-feedback" style="margin-right:13px;"></span>
-      <div id="navTreeDiv" style="width: 96%;background:#fff;display: none;position: absolute;border: 1px #c0c0c0 solid;z-index: 9999;">
+      <div id="navTreeDiv" style="width: 95.9%;background:#fff;display: none;position: absolute;border: 1px #c0c0c0 solid;z-index: 9999;">
           <ul id="navTree" class="ztree"></ul>
       </div>
     </div>
@@ -121,49 +121,48 @@
   </div>
 <% end %>
 <input type="hidden" id="uploader_swf_path" value="<%= asset_path('Uploader.swf')%>">
-<script src="<%= javascript_path('uploader')%>" type="text/javascript"></script>
 <script type="text/javascript">
   $(function(){
     initWebUploader({server:'',uploadUrl:'content_pics'});
     initUploadVide();
+    
+    var columnSetting = {
+      view : {
+          dblClickExpand : false
+      },
+      async : {
+          enable : true,
+          dataType : "json",
+          type: "get",
+          url : "<%= navs_json_path %>"
+      },
+      callback : {
+          onAsyncSuccess : function(event, treeId, treeNode, msg) {
+              var zTree = $.fn.zTree.getZTreeObj("navTree");
+              zTree.expandAll(true);
+          },
+          onClick:function(event, treeId, treeNode){
+              $("#navTreeInput").val(treeNode.name);
+              $("#content_nav_id").val(treeNode.id);
+              $("#navTreeDiv").css("display","none");
+          }
+      }
+    };
+    $.fn.zTree.init($("#navTree"), columnSetting);
+
+    $("#navTreeInput").click(function () {
+      var display = $("#navTreeDiv").css("display");
+      if(display === 'block'){
+          $("#navTreeDiv").css("display","none");
+      }else{
+          $("#navTreeDiv").css("display","block");
+      }
+
+    });
     var editor = new Simditor({
       textarea: $('#content_content'),
       upload:true
     });
-
-    var columnSetting = {
-            view : {
-                dblClickExpand : false
-            },
-            async : {
-                enable : true,
-                dataType : "json",
-                type: "get",
-                url : "<%= navs_json_path %>"
-            },
-            callback : {
-                onAsyncSuccess : function(event, treeId, treeNode, msg) {
-                    var zTree = $.fn.zTree.getZTreeObj("navTree");
-                    zTree.expandAll(true);
-                },
-                onClick:function(event, treeId, treeNode){
-                    $("#navTreeInput").val(treeNode.name);
-                    $("#content_nav_id").val(treeNode.id);
-                    $("#navTreeDiv").css("display","none");
-                }
-            }
-        };
-        $.fn.zTree.init($("#navTree"), columnSetting);
-
-        $("#navTreeInput").click(function () {
-            var display = $("#navTreeDiv").css("display");
-            if(display === 'block'){
-                $("#navTreeDiv").css("display","none");
-            }else{
-                $("#navTreeDiv").css("display","block");
-            }
-
-        });
-
-  })
+  });
+  
 </script>
