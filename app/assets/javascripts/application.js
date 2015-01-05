@@ -16,7 +16,7 @@
 //= require module.min
 //= require hotkeys.min
 //= require uploader.min
-//= require simditor
+//= require simditor.min
 //= require bootstrap.min
 //= require bootstrapValidator.min
 //= require toastr.min
