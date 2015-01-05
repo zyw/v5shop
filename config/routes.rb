@@ -1,41 +1,41 @@
 Rails.application.routes.draw do
 
   # 内容分类管理
-  resources :content_classifies
+  resources :content_classifies,path: '/admin/content_classifies'
 
   # 内容管理
-  resources :contents
+  resources :contents,path: '/admin/contents'
 
-  post 'content/pics/upload' => 'contents#picsUpload',as:'pics_upload'
+  post 'admin/content/pics/upload' => 'contents#picsUpload',as:'pics_upload'
 
-  post 'content/cattas/upload' => 'contents#cattasUpload',as:'cattas_upload'
+  post 'admin/content/cattas/upload' => 'contents#cattasUpload',as:'cattas_upload'
 
   # 导航管理
-  get 'navs/json' => 'navs#tree_json', as: 'navs_json'
+  get 'admin/navs/json' => 'navs#tree_json', as: 'navs_json'
 
-  resources :navs
+  resources :navs,path: '/admin/navs'
 
   #行政区划管理
-  resources :admin_divisions
+  resources :admin_divisions,path: '/admin/admin_divisions'
 
   #服务地址管理
-  resources :addresses
+  resources :addresses,path: '/admin/addresses'
 
   # 产品信息
-  resources :products
+  resources :products,path: '/admin/products'
 
-  post 'product/picture/upload' => 'products#pictureUpload'
+  post 'admin/product/picture/upload' => 'products#pictureUpload'
   get 'product/list' => 'products#list', as: 'product_list'
   get 'product/list/:pcid' => 'products#list',as: 'product_list_s'
 
   # 产品分类
-  resources :product_classifies
+  resources :product_classifies,path: '/admin/product_classifies'
 
   # 字典
-  resources :dicts
+  resources :dicts,path: '/admin/dicts'
 
   # 字典类型
-  resources :dict_types
+  resources :dict_types,path: '/admin/dict_types'
 
   # 会员
   get 'users/login' => 'users#login', as: 'user_login'
@@ -48,18 +48,18 @@ Rails.application.routes.draw do
 
   post 'users/reg_post' => 'users#regPost', as: 'user_register_post'
 
-  resources :users
+  resources :users,path: '/admin/users'
 
   # 管理员
   get 'managers/login',as:'manager_login'
 
-  get 'managers/logout',as: 'manager_logout'
-
   post 'managers/login_post' => 'managers#loginPost', as: 'manager_login_post'
 
-  post 'managers/reset_pwd' => 'managers#resetPassword',as: 'manager_reset_pwd'
+  get 'admin/managers/logout',as: 'manager_logout'
 
-  resources :managers
+  post 'admin/managers/reset_pwd' => 'managers#resetPassword',as: 'manager_reset_pwd'
+
+  resources :managers,path: '/admin/managers'
 
   # 后台首页
   get 'admins/index'

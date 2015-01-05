@@ -31,15 +31,7 @@
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">状态</label>
     <div class="col-sm-8">
-      <%= f.select(:status,nil,{},class:'form-control') do %>
-        <% @contentStatues.each do |cs| -%>
-          <% if @content.status.to_s == cs.value %>
-            <%= content_tag(:option, cs.name, value: cs.value,selected: 'selected') %>
-          <% else %>
-            <%= content_tag(:option, cs.name, value: cs.value) %>
-          <% end %>
-        <% end %>
-      <% end %>
+    <%= f.select :status, @contentStatues.collect { |p| [ p.name, p.value ] }, {},{class:'form-control'} %>
     </div>
   </div>
   <div class="form-group">
@@ -115,7 +107,7 @@
   </div>
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">内容</label>
-    <div class="col-sm-9">
+    <div class="col-sm-10">
       <%= f.text_area :content,class:"form-control",rows:4,placeholder:'内容...' %>
     </div>
   </div>

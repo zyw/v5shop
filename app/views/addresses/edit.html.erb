@@ -1,6 +1,26 @@
-<h1>Editing address</h1>
+<section class="content-header">
+    <h1>
+        修改服务地址
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li>
+        	<%= link_to("服务地址列表",addresses_path)%>
+        </li>
+        <li class="active">修改服务地址</li>
+    </ol>
+</section>
 
-<%= render 'form' %>
+<!-- Main content -->
+<section class="content">
+	<div class="box box-warning">
+	    <div class="box-header">
+	        <h3 class="box-title">修改服务地址</h3>
+	    </div><!-- /.box-header -->
+	    <div class="box-body">
+	        <%= render 'form' %>
+	    </div><!-- /.box-body -->
+	</div>
+</section><!-- /.content -->
 
-<%= link_to 'Show', @address %> |
-<%= link_to 'Back', addresses_path %>
