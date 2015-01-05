@@ -10,17 +10,17 @@ jQuery(function() {
         thumbnailHeight = 100 * ratio,
 
         // Web Uploader实例
-        uploader,swf_path,
+        swf_path,
         swf_path = $("uploader_swf_path").val(),
         authenticity_token = $('meta[name=csrf-token]').attr('content');
     function initWebUploader(params){
-        var options = $.extend(params,{
+        var options = $.extend({
             server:'/product/picture/upload',
             pick: '#filePicker',
             startUploadBtn:'start_upload',
             uploadUrl:'product_picture',
             multiUpload:false
-        });
+        },params);
         // 初始化Web Uploader
         var uploader = WebUploader.create({
 
@@ -71,6 +71,20 @@ jQuery(function() {
 
                 $img.attr( 'src', src );
             }, thumbnailWidth, thumbnailHeight );
+            var $error = $li.find('div.remove');
+            // 避免重复创建
+            if ( !$error.length ) {
+                $error = $('<div class="remove"></div>').appendTo( $li );
+            }
+
+            $error.html('<i class="fa fa-trash-o"></i>');
+
+            $error.on('click',function() {
+                console.log("===================")
+                var $li = $( '#'+file.id );
+                $li.detach();
+                uploader.removeFile( file);
+            })
         });
 
         // 文件上传过程中创建进度条实时显示。
@@ -91,7 +105,7 @@ jQuery(function() {
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on( 'uploadSuccess', function( file,response) {
             var files = $("#"+options.uploadUrl).val();
-            if(multiUpload && files !== ''){
+            if(options.multiUpload && files !== ''){
                 $("#"+options.uploadUrl).val(files + ',' + response.img_path);
             }else{
                 $("#"+options.uploadUrl).val(response.img_path);
@@ -118,15 +132,20 @@ jQuery(function() {
             $( '#'+file.id ).find('.progress').remove();
         });
     }
-    
+
+
+    //添加媒体文件或者附件
     function initUploadVide(params){
-        var options = $.extend(params,{
-            server:'/product/picture/upload',
+        var options = $.extend({
+            server:'',
             pick: '#fileVideo',
             startUploadBtn:'start_upload',
             uploadUrl:'content_cattas',
             multiUpload:false
-        });
+        },params),
+        $cattasList = $("#cattasList"),
+        fileExts = ['mp4','zip','rar','pdf']
+
         var uploader = WebUploader.create({
             swf: swf_path,
             server: options.server,
@@ -134,17 +153,67 @@ jQuery(function() {
 
             // 只允许选择文件，可选。
             accept: {
-                title: 'Video',
-                extensions: 'mp4,zip,rar,pdf',
-                mimeTypes: 'video/mpeg4,application/zip,application/x-rar-compressed,application/pdf'
+                title: '媒体文件',
+                extensions: fileExts.join(','),
+                mimeTypes: 'video/*,application/zip,application/x-rar-compressed,application/pdf'
             },
             formData:{authenticity_token: authenticity_token}
         });
+        $("#"+options.startUploadBtn).on("click",function(){
+            uploader.upload();
+        });
+        uploader.on('beforeFileQueued',function(file){
+            if($.inArray(file.ext,fileExts) === -1){
+                toastr.error("目前只支持："+fileExts.join(',')+"格式上传。");
+            }
+        });
+        // 当有文件添加进来的时候
+        uploader.on( 'fileQueued', function( file ) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                        '<img>' +
+                        '<div class="info">' + file.name + '</div>' +
+                    '</div>'
+                    ),
+                $img = $li.find('img');
 
+            $cattasList.append( $li );
+
+            // 创建缩略图
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr( 'src', src );
+            }, thumbnailWidth, thumbnailHeight );
+            var $error = $li.find('div.error');
+            // 避免重复创建
+            if ( !$error.length ) {
+                $error = $('<div class="error"></div>').appendTo( $li );
+            }
+
+            $error.text('上传失败');
+        });
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on( 'uploadProgress', function( file, percentage ) {
+            var $li = $( '#'+file.id ),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if ( !$percent.length ) {
+                $percent = $('<p class="progress"><span></span></p>')
+                        .appendTo( $li )
+                        .find('span');
+            }
+
+            $percent.css( 'width', percentage * 100 + '%' );
+        });
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on( 'uploadSuccess', function( file,response) {
             var files = $("#"+options.uploadUrl).val();
-            if(multiUpload && files !== ''){
+            if(options.multiUpload && files !== ''){
                 $("#"+options.uploadUrl).val(files + ',' + response.img_path);
             }else{
                 $("#"+options.uploadUrl).val(response.img_path);

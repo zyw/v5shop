@@ -32,9 +32,13 @@
     <label for="name" class="col-sm-2 control-label">状态</label>
     <div class="col-sm-8">
       <%= f.select(:status,nil,{},class:'form-control') do %>
-        <%= content_tag(:option, '待审核', value: 0) %>
-        <%= content_tag(:option, '草稿', value: 1) %>
-        <%= content_tag(:option, '发布', value: 2,selected:true) %>
+        <% @contentStatues.each do |cs| -%>
+          <% if @content.status.to_s == cs.value %>
+            <%= content_tag(:option, cs.name, value: cs.value,selected: 'selected') %>
+          <% else %>
+            <%= content_tag(:option, cs.name, value: cs.value) %>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -51,8 +55,9 @@
         <% if @content_classifes.nil?%>
           <%= content_tag(:option, '--还没有内容分类--', value: '') %>
         <%else%>
+          <%= content_tag(:option, '--请选择分类--', value: '') %>
           <% @content_classifes.each do |cc|%>
-            <%= content_tag(:option, '待审核', value: 0) %>
+            <%= content_tag(:option, cc.name, value: cc.id) %>
           <% end %>
         <%end%>
       <% end %>
@@ -94,6 +99,7 @@
     <label for="name" class="col-sm-2 control-label">视频附件</label>
     <div class="col-sm-8">
       <%= f.hidden_field :cattas %>
+      <div id="cattasList" class="uploader-list"></div>
       <div class="row">
         <div class="col-sm-2">
           <!--dom结构部分-->
@@ -110,7 +116,7 @@
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">内容</label>
     <div class="col-sm-9">
-      <%= f.text_area :content,class:"form-control",rows:4,placeholder:'内容' %>
+      <%= f.text_area :content,class:"form-control",rows:4,placeholder:'内容...' %>
     </div>
   </div>
   <div class="form-group">
@@ -123,8 +129,8 @@
 <input type="hidden" id="uploader_swf_path" value="<%= asset_path('Uploader.swf')%>">
 <script type="text/javascript">
   $(function(){
-    initWebUploader({server:'',uploadUrl:'content_pics'});
-    initUploadVide();
+    initWebUploader({server:'<%= pics_upload_path %>',uploadUrl:'content_pics',multiUpload:true});
+    initUploadVide({server:'<%= cattas_upload_path %>',pick:'#fileVideo',startUploadBtn:'startUploadVideo',uploadUrl:'content_cattas'});
     
     var columnSetting = {
       view : {
@@ -159,11 +165,12 @@
       }
 
     });
+    var authenticity_token = $('meta[name=csrf-token]').attr('content');
     var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent'];
     var editor = new Simditor({
       textarea: $('#content_content'),
       toolbar: toolbar,
-      upload:true
+      upload:{url:'<%= pics_upload_path %>',params:{authenticity_token: authenticity_token},leaveConfirm: '正在上传文件，如果离开上传会自动取消'}
     });
   });
 </script>

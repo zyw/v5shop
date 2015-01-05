@@ -1,51 +1,109 @@
-<h1>Listing contents</h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        内容列表
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admins/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">内容列表</li>
+    </ol>
+</section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Content</th>
-      <th>Nav</th>
-      <th>Stick</th>
-      <th>Stick num</th>
-      <th>Status</th>
-      <th>Pics</th>
-      <th>Dispics</th>
-      <th>Cattas</th>
-      <th>Manager</th>
-      <th>Content classify</th>
-      <th>Content seo</th>
-      <th>Author</th>
-      <th>Source url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">内容列表</h3>
+            <div class="box-tools">
+                <div class="pull-right">
+                  <button id="addContent" type="button" class="btn btn-success" data-toggle='tooltip' data-placement="top" title="内容列表"><i class="fa fa-plus"></i> 内容列表</button>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <div class="input-group col-lg-3" style="margin-bottom:20px;">
+                <input type="text" name="content_search" id="content_search" class="form-control input-sm" placeholder="查询" value="<%= @search_txt%>">
+                <div class="input-group-btn">
+                    <button id="content_search_btn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                </div>
+             </div>
+          <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>名称</th>
+                      <th>所属导航</th>
+                      <th>置顶</th>
+                      <th>状态</th>
+                      <th>分类</th>
+                      <th>创建者</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  <% @contents.each do |content|  %>
+                    <tr>
+                      <td><%= content.id %></td>
+                      <td><%= content.name %></td>
+                      <td><%= content.nav.name %></td>
+                      <td>
+                        <% if content.stick == 0 %>
+                          否
+                        <% else %>
+                          是
+                        <% end %>
+                      </td>
+                      <td><%= content.status %></td>
+                      <td><%= content.content_classify_id %></td>
+                      <td><%= content.manager_id %></td>
+                      <td><%= date_format(content.created_at) %></td>
+                      <td>
+                        <%= link_to 'Show', content %>
+                        <a href="<%= edit_content_path(content)%>" class="btn btn-info btn-xs" data-toggle='tooltip' data-placement="top" title="修改"><i class="fa fa-pencil-square-o"></i></a>
+                          <%= link_to(content, method: :delete,data:{confirm:"您确认要删除吗？"},class:'btn btn-warning btn-xs',:"data-toggle" => 'tooltip',:"data-placement" => 'top',title:"删除") do %>
+                            <i class="fa fa-trash-o"></i>
+                          <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+              </tbody>
+            </table>
+            <div class="box-footer clearfix">
+              <div class="pull-left" style="line-height:70px;">
+                <%= page_entries_info @contents %>
+              </div>
+              <div class="pull-right">
+                <%= paginate @contents %>
+              </div>
+              
+            </div>
+        </div><!-- /.box-body -->
+    </div>
+    <input type="hidden" id="content_message" value="<%= notice %>">
+    <input type="hidden" id="content_alert" value="<%= alert %>">
+    <script type="text/javascript">
+      $(function(){
+            var message = $("#content_message").val();
+            if(message !== ''){
+                toastr.success(message);
+                $("#content_message").val("");
+            }
+            var alertMsg = $("#content_alert").val();
+            if(alertMsg !== ''){
+                toastr.error(alertMsg);
+                $("#content_alert").val("");
+            }
+        $("#addContent").click(function(){
+          location.href = '<%= new_content_path%>';
+        })
+        $("#content_search_btn").click(function(){
+          var search_txt = $("#content_search").val();
+          location.href = "<%= contents_path%>?search_txt=" +search_txt;
+        })
 
-  <tbody>
-    <% @contents.each do |content| %>
-      <tr>
-        <td><%= content.name %></td>
-        <td><%= content.content %></td>
-        <td><%= content.nav_id %></td>
-        <td><%= content.stick %></td>
-        <td><%= content.stick_num %></td>
-        <td><%= content.status %></td>
-        <td><%= content.pics %></td>
-        <td><%= content.dispics %></td>
-        <td><%= content.cattas %></td>
-        <td><%= content.manager_id %></td>
-        <td><%= content.content_classify_id %></td>
-        <td><%= content.content_seo %></td>
-        <td><%= content.author %></td>
-        <td><%= content.source_url %></td>
-        <td><%= link_to 'Show', content %></td>
-        <td><%= link_to 'Edit', edit_content_path(content) %></td>
-        <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      })
+    </script>
+</section><!-- /.content -->
 
-<br>
-
-<%= link_to 'New Content', new_content_path %>

@@ -34,7 +34,7 @@ class ContentClassifiesController < ApplicationController
 
     respond_to do |format|
       if @content_classify.save
-        format.html { redirect_to @content_classify, notice: 'Content classify was successfully created.' }
+        format.html { redirect_to :content_classifies, notice: '内容分类添加成功。' }
         format.json { render :show, status: :created, location: @content_classify }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class ContentClassifiesController < ApplicationController
   def update
     respond_to do |format|
       if @content_classify.update(content_classify_params)
-        format.html { redirect_to @content_classify, notice: 'Content classify was successfully updated.' }
+        format.html { redirect_to :content_classifies, notice: '内容分类修改成功。' }
         format.json { render :show, status: :ok, location: @content_classify }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class ContentClassifiesController < ApplicationController
   def destroy
     @content_classify.destroy
     respond_to do |format|
-      format.html { redirect_to content_classifies_url, notice: 'Content classify was successfully destroyed.' }
+      format.html { redirect_to content_classifies_url, notice: '内容分类删除成功。' }
       format.json { head :no_content }
     end
   end

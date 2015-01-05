@@ -1,3 +1,3 @@
 class Nav < ActiveRecord::Base
-	@children
+	has_many :contents, dependent: :destroy
 end

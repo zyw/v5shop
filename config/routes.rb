@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+
+  # 内容分类管理
   resources :content_classifies
 
+  # 内容管理
   resources :contents
 
+  post 'content/pics/upload' => 'contents#picsUpload',as:'pics_upload'
+
+  post 'content/cattas/upload' => 'contents#cattasUpload',as:'cattas_upload'
+
+  # 导航管理
   get 'navs/json' => 'navs#tree_json', as: 'navs_json'
 
   resources :navs

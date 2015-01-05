@@ -13,10 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require module.min
-//= require hotkeys.min
-//= require uploader.min
-//= require simditor.min
 //= require bootstrap.min
 //= require bootstrapValidator.min
 //= require toastr.min
@@ -26,3 +22,7 @@
 //= require site-setting
 //= require jquery.treetable
 //= require jquery.ztree.all-3.5.min
+//= require module.min
+//= require hotkeys.min
+//= require uploader.min
+//= require simditor.min
