@@ -22,6 +22,17 @@ class CartsController < ApplicationController
 			pids = [pid]
 			session[:cart_pids] = pids
 		end
+		product = Product.find(pid)
+		cpsn = session[:cart_ps_num]
+		if cpsn == nil
+			cpsn = Hash.new
+		end
+
+		if cpsn.has_key?(pid)
+
+		else
+			
+		end
 		redirect_to :carts_list
 	end
 
