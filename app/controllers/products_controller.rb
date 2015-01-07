@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :init_form_page, only: [:new,:edit]
   layout "front",only:[:list]
   # GET /products
   # GET /products.json
@@ -20,17 +21,11 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @proStatues = Dict.where(dict_type_id: 2)
-    @chargeTypes = Dict.where(dict_type_id: 1)
-    @pcs = ProductClassify.all
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
-    @proStatues = Dict.where(dict_type_id: 3)
-    @chargeTypes = Dict.where(dict_type_id: 6)
-    @pcs = ProductClassify.all
   end
 
   # POST /products
@@ -108,6 +103,13 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :picture, :feeScale, :charge_type, :status, :intro)
+      params.require(:product).permit(:name, :picture, :feeScale, :charge_type, :status,:unit, :intro)
+    end
+
+    def init_form_page
+      @proStatues = Dict.where(dict_type_id: 2)
+      @chargeTypes = Dict.where(dict_type_id: 1)
+      @units = Dict.where(dict_type_id: 5)
+      @pcs = ProductClassify.all
     end
 end

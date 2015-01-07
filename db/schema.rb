@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102133236) do
+ActiveRecord::Schema.define(version: 20150107094241) do
 
   create_table "addresses", force: true do |t|
     t.string   "contacts"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20150102133236) do
     t.integer  "status"
     t.string   "charge_type"
     t.integer  "product_classify_id"
+    t.string   "unit"
   end
 
   create_table "users", force: true do |t|
