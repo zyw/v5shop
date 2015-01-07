@@ -71,16 +71,15 @@ jQuery(function() {
 
                 $img.attr( 'src', src );
             }, thumbnailWidth, thumbnailHeight );
-            var $error = $li.find('div.remove');
+            var $remove = $li.find('div.remove');
             // 避免重复创建
-            if ( !$error.length ) {
-                $error = $('<div class="remove"></div>').appendTo( $li );
+            if ( !$remove.length ) {
+                $remove = $('<div class="remove"></div>').appendTo( $li );
             }
 
-            $error.html('<i class="fa fa-trash-o"></i>');
+            $remove.html('<i class="fa fa-trash-o"></i>');
 
-            $error.on('click',function() {
-                console.log("===================")
+            $remove.on('click',function() {
                 var $li = $( '#'+file.id );
                 $li.detach();
                 uploader.removeFile( file);
@@ -188,13 +187,19 @@ jQuery(function() {
 
                 $img.attr( 'src', src );
             }, thumbnailWidth, thumbnailHeight );
-            var $error = $li.find('div.error');
+            var $remove = $li.find('div.remove');
             // 避免重复创建
-            if ( !$error.length ) {
-                $error = $('<div class="error"></div>').appendTo( $li );
+            if ( !$remove.length ) {
+                $remove = $('<div class="remove"></div>').appendTo( $li );
             }
 
-            $error.text('上传失败');
+            $remove.html('<i class="fa fa-trash-o"></i>');
+
+            $remove.on('click',function() {
+                var $li = $( '#'+file.id );
+                $li.detach();
+                uploader.removeFile( file);
+            })
         });
         // 文件上传过程中创建进度条实时显示。
         uploader.on( 'uploadProgress', function( file, percentage ) {

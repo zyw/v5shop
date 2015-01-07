@@ -33,20 +33,25 @@
                 <div class="col-xs-2"><%= p.feeScale %></div>
                 <div class="col-xs-2">
                     <% if p.charge_type == 'area'%>
-                        <select class="form-control area-select">
+                        <select id="select_num" class="form-control area-select" data-pid="<%= p.id %>">
                             <% @areas.each do |area|%>
-                                <%= content_tag(:option, area.name, value: area.value) %>
+                                <% if area.value == @cpsn[p.id.to_s]%>
+                                    <%= content_tag(:option, area.name, value: area.value,selected:true) %>
+                                <% else %>
+                                    <%= content_tag(:option, area.name, value: area.value) %>
+                                <% end %>
+                                
                             <% end %>
                         </select>
                     <% else %>
-                        <div id="spinner">
+                        <div id="spinner" data-pid="<%= p.id%>">
                             <div class="input-group" style="width:150px;">
                               <div class="spinner-buttons input-group-btn">
                                   <button type="button" class="btn spinner-up btn-warning">
                                       <i class="glyphicon glyphicon-plus"></i>
                                   </button>
                               </div>
-                              <input type="text" class="form-control spinner-input" maxlength="3" readonly>
+                              <input type="text" class="form-control spinner-input"  maxlength="3" readonly value="<%= @cpsn[p.id.to_s]%>">
                               <div class="spinner-buttons input-group-btn">
                                   <button type="button" class="btn spinner-down btn-danger">
                                       <i class="glyphicon glyphicon-minus"></i>
@@ -74,8 +79,32 @@
     </div>
 <% end %>
 <script type="text/javascript">
+    var authenticity_token = $('meta[name=csrf-token]').attr('content')
     $(function(){
+        function changeNum(key,value){
+            $.ajax({
+                url:'<%= cart_change_num_path %>',
+                dataType:'json',
+                type:'POST',
+                data:{key:key,value:value,authenticity_token:authenticity_token},
+                success:function(data){
+                    
+                },
+                error:function (XMLHttpRequest, textStatus, errorThrown) {
+                    toastr.error("改变购物车服务数量失败！");
+                }
+            })
+        }
         $('#spinner').spinner({value:1, min: 1, max: 200});
+        $('#spinner').on("changed",function(event, value){
+            var key = $(this).data("pid");
+            changeNum(key,value);
+        })
+        $("#select_num").on("change",function(){
+            var key = $(this).data("pid");
+            var value = $(this).val();
+            changeNum(key,value);
+        })
         $(".cart-btn").click(function(){
             var $remove = $(this);
             var pid = $(this).data("pid");
