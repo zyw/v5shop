@@ -33,7 +33,7 @@
                 <div class="col-xs-2"><%= p.feeScale %></div>
                 <div class="col-xs-2">
                     <% if p.charge_type == 'area'%>
-                        <select id="select_num" class="form-control area-select" data-pid="<%= p.id %>">
+                        <select class="form-control area-select select_num" data-pid="<%= p.id %>">
                             <% @areas.each do |area|%>
                                 <% if area.value == @cpsn[p.id.to_s]%>
                                     <%= content_tag(:option, area.name, value: area.value,selected:true) %>
@@ -44,7 +44,7 @@
                             <% end %>
                         </select>
                     <% else %>
-                        <div id="spinner" data-pid="<%= p.id%>">
+                        <div class="spinner" data-pid="<%= p.id%>">
                             <div class="input-group" style="width:150px;">
                               <div class="spinner-buttons input-group-btn">
                                   <button type="button" class="btn spinner-up btn-warning">
@@ -95,12 +95,12 @@
                 }
             })
         }
-        $('#spinner').spinner({value:1, min: 1, max: 200});
-        $('#spinner').on("changed",function(event, value){
+        $('.spinner').spinner({value:1, min: 1, max: 200});
+        $('.spinner').on("changed",function(event, value){
             var key = $(this).data("pid");
             changeNum(key,value);
         })
-        $("#select_num").on("change",function(){
+        $(".select_num").on("change",function(){
             var key = $(this).data("pid");
             var value = $(this).val();
             changeNum(key,value);
