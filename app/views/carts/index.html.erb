@@ -69,6 +69,11 @@
             </div>
         <% end %>
     </div>
+    <div class="container bs-container">
+        <div class="cart-price">
+            <span class="first">预计服务费用：</span><span id="total"><%= @total%></span><span class="last">元</span>
+        </div>
+    </div>
     <div class="container bs-container container-bg">
         <div class="col-xs-offset-9 col-xs-1">
             <%= link_to '继续选择',product_list_path,class:"btn btn-default"%>
@@ -88,7 +93,7 @@
                 type:'POST',
                 data:{key:key,value:value,authenticity_token:authenticity_token},
                 success:function(data){
-                    
+                    $("#total").text(data.total);
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {
                     toastr.error("改变购物车服务数量失败！");
@@ -125,6 +130,7 @@
                                 if(data.status === 2){
                                     location.reload();
                                 }else{
+                                    $("#total").text(data.total);
                                     $remove.parent().parent().detach();
                                 }
                             },

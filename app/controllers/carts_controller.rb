@@ -1,16 +1,9 @@
 class CartsController < ApplicationController
 	layout "front",only:[:index]
+	before_action :cart_info, only: [:index]
 
 	def index
-		pids = session[:cart_pids]
-		if pids
-			@products = Product.find(pids)
-		else
-			@products = []
-		end
-		@cpsn = session[:cart_ps_num]
-
-		@areas = Dict.where(dict_type_id: 3)
+		
 	end
 
 	def add
@@ -60,7 +53,8 @@ class CartsController < ApplicationController
 		if pids.empty?
 			render json: "{\"status\":2,\"message\":\"购物车为空了。\"}"
 		else
-			render json: "{\"status\":1,\"message\":\"购物车移除成功。\"}"
+			cart_info()
+			render json: "{\"total\":\"#{@total}\",\"status\":1,\"message\":\"购物车移除成功。\"}"
 		end
 	end
 	
@@ -69,6 +63,33 @@ class CartsController < ApplicationController
 		value = params[:value]
 		cpsn = session[:cart_ps_num]
 		cpsn[key] = value
-		render json: "{\"status\":1,\"message\":\"改变购物车产品数量成功。\"}"
+		cart_info()
+		render json: "{\"total\":\"#{@total}\",\"status\":1,\"message\":\"改变购物车产品数量成功。\"}"
 	end
+
+	private
+		def cart_info
+			pids = session[:cart_pids]
+			if pids
+				@products = Product.find(pids)
+			else
+				@products = []
+			end
+			@cpsn = session[:cart_ps_num]
+
+			@areas = Dict.where(dict_type_id: 3)
+
+			@total = 0
+			@products.each do |product|
+				if product.charge_type == 'num'
+					@total = @total + (@cpsn[(product.id).to_s]).to_i * (product.feeScale).to_i
+				else
+					(0..(@areas.length-1)).each do |i|
+						if @cpsn[product.id.to_s] == (@areas[i].value)
+							@total = @total + ((i + 1) * (product.feeScale).to_i)
+						end
+					end
+				end
+			end
+		end
 end
