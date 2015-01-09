@@ -35,7 +35,7 @@
                     <% if p.charge_type == 'area'%>
                         <select class="form-control area-select select_num" data-pid="<%= p.id %>">
                             <% @areas.each do |area|%>
-                                <% if area.value == @cpsn[p.id.to_s]%>
+                                <% if area.value == @pids[p.id.to_s]%>
                                     <%= content_tag(:option, area.name, value: area.value,selected:true) %>
                                 <% else %>
                                     <%= content_tag(:option, area.name, value: area.value) %>
@@ -51,7 +51,7 @@
                                       <i class="glyphicon glyphicon-plus"></i>
                                   </button>
                               </div>
-                              <input type="text" class="form-control spinner-input"  maxlength="3" readonly value="<%= @cpsn[p.id.to_s]%>">
+                              <input type="text" class="form-control spinner-input"  maxlength="3" readonly value="<%= @pids[p.id.to_s]%>">
                               <div class="spinner-buttons input-group-btn">
                                   <button type="button" class="btn spinner-down btn-danger">
                                       <i class="glyphicon glyphicon-minus"></i>
