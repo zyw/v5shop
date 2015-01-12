@@ -1,0 +1,164 @@
+<div class="container next-banner">
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading box-title">
+            <div class="pull-right">
+                <button class="btn btn-warning btn-sm" data-toggle="tooltip" title="">
+                    <i class="glyphicon glyphicon-user"></i> 登录选择服务地址
+                </button>
+            </div>
+            <div class="box-label"><i class="glyphicon glyphicon-link"></i> 服务地址</div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-8">
+                <form action="#" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">联系人</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" placeholder="输入您的真实姓名" spellcheck="false" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">手机号</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" placeholder="在这里输入您的手机号，下单后会有工作人员跟您联系" spellcheck="false" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">服务地址</label>
+                        <div class="col-xs-10">
+                            <label class="checkbox-inline col-xs-4">
+                                <select name="" id="province" class="form-control">
+                                	<option value="0">省份/自治区</option>
+									<%= @first.each do |ad|%>
+										<option value="<%= ad.id %>"><%= ad.name%></option>
+									<% end %>
+                                </select>
+                            </label>
+                            <label class="checkbox-inline col-xs-4">
+                                <select name="" id="city" class="form-control">
+									<option value="0">城市/地区/自治州</option>
+                                </select>
+                            </label>
+                            <label class="checkbox-inline col-xs-4">
+                                <select name="" id="county" class="form-control">
+									<option value="0">区/县</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">详细地址</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" placeholder="输入您的详细地址" spellcheck="false" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading box-title">
+            <div class="box-label">
+                <i class="glyphicon glyphicon-calendar"></i> 选择地址
+            </div>
+        </div>
+        <div class="panel-body">
+            <a href="javascript:;" class="col-xs-4 address selected">
+                <div>张三</div>
+                <hr>
+                <div>13566669524</div>
+                <div>水分流失大量废</div>
+                <div>水分流失大量废旧塑料房价</div>
+                <div class="pull-right edit-btn">
+                    <button class="btn btn-warning btn-sm">编辑</button>
+                </div>
+            </a>
+            <a href="javascript:;" class="col-xs-4 address">
+                <div>李四</div>
+                <hr>
+                <div>13566669524</div>
+                <div>水分流失大量废</div>
+                <div>水分流失大量废旧塑料房价</div>
+                <div class="pull-right edit-btn">
+                    <button class="btn btn-warning btn-sm">编辑</button>
+                </div>
+            </a>
+            <a href="javascript:;" class="col-xs-4 address">
+                <div>张三</div>
+                <hr>
+                <div>13566669524</div>
+                <div>水分流失大量废</div>
+                <div>水分流失大量废旧塑料房价</div>
+                <div class="pull-right edit-btn">
+                    <button class="btn btn-warning btn-sm">编辑</button>
+                </div>
+            </a>
+            <a href="javascript:;" class="col-xs-4 address">
+                <div>张三</div>
+                <hr>
+                <div>13566669524</div>
+                <div>水分流失大量废</div>
+                <div>水分流失大量废旧塑料房价</div>
+                <div class="pull-right edit-btn">
+                    <button class="btn btn-warning btn-sm">编辑</button>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading box-title">
+            <div class="box-label">
+                <i class="glyphicon glyphicon-calendar"></i> 预约时间及备注
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-8">
+                <div class="dateintro">
+                    <label class="checkbox-inline col-xs-4" style="padding-left: 0;">
+                        <div class="input-group date datepicker" data-date-autoclose="true" data-date-format="yyyy年mm月dd日">
+                            <input class="form-control" type="text" placeholder="选择服务日期">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                    </label>
+                    <label class="checkbox-inline col-xs-4" style="padding-left: 0;">
+                        <div class="input-group input-append bootstrap-timepicker">
+                            <input id="timepicker2" type="text" class="form-control">
+                            <span class="input-group-addon add-on">
+                                <i class="glyphicon glyphicon-time"></i>
+                            </span>
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <textarea class="form-control" placeholder="有什么需要提醒的您写到这..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+<div class="container bs-container">
+    <div class="cart-price">
+        <span class="first">预计服务费用：</span><span id="total">300</span><span class="last">元</span>
+    </div>
+</div>
+<div class="container bs-container container-bg">
+    <div class="col-xs-offset-9 col-xs-1">
+        <%= link_to '返回购物车',carts_list_path,class:'btn btn-default'%>
+    </div>
+    <div class="col-xs-2" style="text-align: center;">
+        <a class="btn btn-warning" href="#">完成</a>
+    </div>
+</div>
+<script type="text/javascript">
+	var find_ad_url = '<%= find_ad_path%>';
+    $(function(){
+    	$.v5shop.initConfirmOrder();
+    });
+</script>

@@ -79,67 +79,15 @@
             <%= link_to '继续选择',product_list_path,class:"btn btn-default"%>
         </div>
         <div class="col-xs-2" style="text-align: center;">
-            <a class="btn btn-warning" href="#">下一步</a>
+            <%= link_to '下一步',order_confirms_path,class:'btn btn-warning'%>
         </div>
     </div>
 <% end %>
 <script type="text/javascript">
-    var authenticity_token = $('meta[name=csrf-token]').attr('content')
+    var authenticity_token = $('meta[name=csrf-token]').attr('content');
+    var change_num_url = '<%= cart_change_num_path %>';
+    var cart_remove_url = '<%= cart_remove_path %>';
     $(function(){
-        function changeNum(key,value){
-            $.ajax({
-                url:'<%= cart_change_num_path %>',
-                dataType:'json',
-                type:'POST',
-                data:{key:key,value:value,authenticity_token:authenticity_token},
-                success:function(data){
-                    $("#total").text(data.total);
-                },
-                error:function (XMLHttpRequest, textStatus, errorThrown) {
-                    toastr.error("改变购物车服务数量失败！");
-                }
-            })
-        }
-        $('.spinner').spinner({value:1, min: 1, max: 200});
-        $('.spinner').on("changed",function(event, value){
-            var key = $(this).data("pid");
-            changeNum(key,value);
-        })
-        $(".select_num").on("change",function(){
-            var key = $(this).data("pid");
-            var value = $(this).val();
-            changeNum(key,value);
-        })
-        $(".cart-btn").click(function(){
-            var $remove = $(this);
-            var pid = $(this).data("pid");
-            swal({
-                title: "温馨提示",
-                text: "确定要移除该服务吗？",
-                type: "info", 
-                showCancelButton: true,
-                confirmButtonText: "确认删除",
-                confirmButtonColor: "#DD6B55",
-                cancelButtonText: "取消"},
-                    function(){
-                        $.ajax({
-                            url:'<%= cart_remove_path %>',
-                            dataType:'json',
-                            data:{id:pid},
-                            success:function(data){
-                                if(data.status === 2){
-                                    location.reload();
-                                }else{
-                                    $("#total").text(data.total);
-                                    $remove.parent().parent().detach();
-                                }
-                            },
-                            error:function (XMLHttpRequest, textStatus, errorThrown) {
-                                toastr.error("购物车移除服务失败！");
-                            }
-                        })
-                    }
-                );
-        });
+        $.v5shop.initCart();
     });
 </script>

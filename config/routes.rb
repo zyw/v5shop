@@ -74,6 +74,11 @@ Rails.application.routes.draw do
   get 'carts/remove' => 'carts#remove',as: 'cart_remove'
   post 'carts/change_num' => 'carts#change_num',as: 'cart_change_num'
 
+  # 订单确认
+
+  get 'order_confirms/index' => 'order_confirms#index',as: 'order_confirms'
+  get 'order_confirms/find_ad' => 'order_confirms#find_ad',as: 'find_ad'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

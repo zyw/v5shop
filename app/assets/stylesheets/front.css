@@ -14,4 +14,6 @@
  *= require front/global
  *= require front/sweet-alert
  *= require toastr.min
+ *= require front/datepicker3
+ *= require front/bootstrap-timepicker.min
  */

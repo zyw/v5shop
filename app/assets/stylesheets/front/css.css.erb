@@ -343,9 +343,6 @@
 	height: 40px;
 	border-radius: 2px;
 }
-.panel-body{
-	/* font-family:'微软雅黑'; */
-}
 
 
 .login-footer-label{
@@ -355,17 +352,39 @@
 .login-footer-label a{
 	color:#FFB06A;
 }
-/* .fa{
-	width: 14px;
-	font-size: 17px;
-	line-height: 1;
-} */
 .top-btn{
 	border: 0px solid transparent;
 	background-color: #F3F3F3;
 }
 .top-dropdown-menu{
 	font-size: 12px;
+}
+.panel{
+	border-radius: 2px;
+}
+.btn{
+	border-radius: 2px;
+}
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child),
+.input-group .form-control:not(:first-child):not(:last-child){
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+.panel-default>.panel-heading{
+	background-color:#fff;
+}
+hr {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border: 0;
+	border-top: 1px solid #DFDFDF;
+}
+.checkbox-inline{
+	padding-left: 0;
+	width:29.35%;
 }
 /*服务列表*/
 .lab-txt{
@@ -538,4 +557,49 @@
 	display:inline;
 	height: 34px;
 	width: 150px;
+}
+
+/*订单确认页面*/
+.box-title{
+	padding: 8px 15px;
+}
+
+.box-title .box-label{
+	color: #FE7E11;
+	line-height: 30px;
+}
+
+.address{
+	width: 32.3%;
+	margin:5px 5px;
+	padding-top: 20px;
+	color:#333333;
+	height:180px;
+	border:1px #DFDFDF solid;
+	background-color: #FAFAFA;
+	border-radius: 2px;
+}
+.address:hover{
+	color:#333333;
+	background-color: #F3F3F3;
+	text-decoration: none;
+}
+.address:focus{
+	color:#333333;
+}
+.selected{
+	border:1px #FE7E11 solid;
+	background-color: #FFFFFF;
+}
+.selected:hover{
+	background-color: #FFFFFF;
+}
+
+.edit-btn{
+	margin-top: 20px;
+	display: none;
+}
+
+.dateintro{
+	margin-bottom: 50px;
 }
