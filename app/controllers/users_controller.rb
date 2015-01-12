@@ -70,14 +70,19 @@ class UsersController < ApplicationController
   # 前端方法
 
   def login
-    # @user = User.new
+    @returnUrl = params[:returnUrl]
     @title = "会员登录"
   end
   def loginPost
     user = User.find_by(name:params[:name])
+    returnUrl = params[:returnUrl]
     if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect_to :root
+        if returnUrl
+          redirect_to returnUrl
+        else
+          redirect_to :root
+        end
     else
       flash[:alert] = "用户名或密码错误！"
       redirect_to '/users/login'
