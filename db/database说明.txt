@@ -36,7 +36,7 @@ user_id         用户ID
 address_id      服务地址ID
 intro           备注
 
-# 订单商品中间表
+# product_order(订单商品中间表）
 order_id
 product_id
 product_num     商品数量
