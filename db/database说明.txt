@@ -25,3 +25,20 @@ content_seo
 
 author
 source_url
+
+# order(订单)
+appoint_date    预约日期
+appoint_time    预约时间
+status          订单状态
+total           总价
+p_deduct        优惠扣除
+user_id         用户ID
+address_id      服务地址ID
+intro           备注
+
+# 订单商品中间表
+order_id
+product_id
+product_num     商品数量
+service_area    服务的面积
+

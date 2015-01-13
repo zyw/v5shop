@@ -137,6 +137,9 @@
                 find_ad(city,'county');
             }
         });
+        $("#finishOrder").on('click',function(){
+            $("#orderForm").submit();
+        });
     }
 
     $.v5shop = v5shop;

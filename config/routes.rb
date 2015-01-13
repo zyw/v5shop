@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :orders
+
   # 内容分类管理
   resources :content_classifies,path: '/admin/content_classifies'
 
