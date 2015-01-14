@@ -30,6 +30,8 @@ source_url
 appoint_date    预约日期
 appoint_time    预约时间
 status          订单状态
+ -1:订单关闭，0:下单成功，1:付款成功，2:系统确认订单，3:人工确认订单，4:服务人员以出发，
+ 5:服务完成
 total           总价
 p_deduct        优惠扣除
 user_id         用户ID
