@@ -1,9 +1,14 @@
 class OrderConfirmsController < ApplicationController
-  layout "front",only:[:index]
+  layout "front",only:[:index,:order_success]
   before_action :user_info,only: [:index]
 
   def index
-  	@first = AdminDivision.where(parent_id:0)
+  	userId = session[:user_id]
+  	if userId
+  		@addresses = Address.where(user_id: userId)
+  	else
+  		@first = AdminDivision.where(parent_id:0)
+  	end
   	@total = session[:service_total]
   end
 
@@ -14,39 +19,66 @@ class OrderConfirmsController < ApplicationController
   end
 
   def order_submit
-  	# puts "#{address_params}"
-
-    dt = DateTime.now.strftime('%y%m%d%H%M%S%L')
+  	# 订单号生成
+  	dt = DateTime.now.strftime('%y%m%d%H%M%S%L')
     num = rand(9999999)
     while num.to_s.length != 7
       num = rand(9999999)
     end
+    # 创建订单和商品的中间表Model对象
+    pids = session[:cart_pids]
+	productOrders = []
+	pids.each do |key,value|
+		productOrders.push(ProductOrder.new(product_id: key,product_num: value))
+	end
 
-    @address = Address.new(address_params)
-    if @address.save
-      puts "#{@address.id}==================="
-      @order = Order.new
-      @order.appoint_date = params[:appoint_date]
-      @order.appoint_time = params[:appoint_time]
-      @order.intro = params[:appoint_intro]
-      @order.status = 0
-      @order.total = session[:service_total]
-      @order.address = @address
-      @order.order_code = dt + (num.to_s)
-      if @order.save
-        format.html { redirect_to :navs, notice: '订单提交成功。' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    else
-      format.html { render :new }
-      format.json { render json: @address.errors, status: :unprocessable_entity }
-    end
-  	#puts "#{params[:appoint_date]}"
-  	#puts "#{params[:appoint_time]}"
-  	#puts "#{params[:appoint_intro]}"
+	# 构建订单实体
+	@order = Order.new do |o|
+		o.appoint_date = params[:appoint_date]
+		o.appoint_time = params[:appoint_time]
+		o.intro = params[:appoint_intro]
+		o.status = 0
+		o.total = session[:service_total]
+		o.order_code = dt + (num.to_s)
+		o.product_orders = productOrders
+	end
+
+  	addid = params[:address_id]
+  	if addid
+  		
+  		@order.address = Address.find(addid)
+		
+		respond_to do |format|
+	  		if @order.save
+	  			format.html { redirect_to :order_success, notice: '订单提交成功。' }
+		        format.json { render :show, status: :created, location: @order }
+	  		else
+	  			format.html { render :order_confirms }
+		        format.json { render json: @order.errors, status: :unprocessable_entity }
+	  		end
+	  	end
+  	else
+		@address = Address.new(address_params)
+		@address.orders = [@order]
+
+	    respond_to do |format|
+	  		if @address.save
+	  			format.html { redirect_to :order_success, notice: '订单提交成功。' }
+		        format.json { render :show, status: :created, location: @order }
+	  		else
+	  			format.html { render :order_confirms }
+		        format.json { render json: @order.errors, status: :unprocessable_entity }
+	  		end
+	  	end
+  	end
+  end
+
+  def order_success
+  	session[:service_total] = nil
+  	session[:cart_pids] = nil
+  	respond_to do |format|
+  		format.html { render 'success' }
+  	end
   end
 
   private

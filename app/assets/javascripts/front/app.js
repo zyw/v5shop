@@ -23,8 +23,10 @@
         $(".address").on("click",function(){
             $(".address").each(function(){
                 $(this).removeClass("selected");
-                $(this).find('.edit-btn').css('display','none')
+                $(this).find('.edit-btn').css('display','none');
             });
+            var addid = $(this).data('addid');
+            $("#address_id").val(addid);
             $(this).addClass("selected");
             $(this).find('.edit-btn').css('display','block')
         });
@@ -88,7 +90,7 @@
         });
     }
 
-    v5shop.initConfirmOrder = function(){
+    v5shop.initSecondLevel = function(){
         function find_ad(adpid,flag){
             $.ajax({
                 url:find_ad_url,
@@ -111,20 +113,6 @@
                 }
             })
         }
-
-        $(".datepicker").datepicker({
-            language: "zh-CN",
-            todayHighlight: true,
-            startDate: '+1d',
-            endDate: '+10d'
-        });
-        $('#timepicker2').timepicker({
-            minuteStep: 30,
-            showSeconds: false,
-            showMeridian: false
-        });
-        $.v5shop.initAddress();
-
         $("#province").on('change',function(){
             var province = $(this).val();
             if(province != 0){
@@ -137,6 +125,22 @@
                 find_ad(city,'county');
             }
         });
+    }
+
+    v5shop.initConfirmOrder = function(){
+
+        $(".datepicker").datepicker({
+            language: "zh-CN",
+            todayHighlight: true,
+            startDate: '+1d',
+            endDate: '+10d'
+        });
+        $('#timepicker2').timepicker({
+            minuteStep: 30,
+            showSeconds: false,
+            showMeridian: false
+        });
+        
         $("#finishOrder").on('click',function(){
             $("#orderForm").submit();
         });

@@ -11,17 +11,26 @@
 		        </div>
 		    </div>
 		    <div class="panel-body">
-		        <a href="javascript:;" class="col-xs-4 address selected">
-		            <div>张三</div>
-		            <hr>
-		            <div>13566669524</div>
-		            <div>水分流失大量废</div>
-		            <div>水分流失大量废旧塑料房价</div>
-		            <div class="pull-right edit-btn">
-		                <button class="btn btn-warning btn-sm">编辑</button>
-		            </div>
-		        </a>
-		        <a href="javascript:;" class="col-xs-4 address">
+		    	<input type="hidden" name="address_id" id="address_id">
+		    	<% if @addresses %>
+					<% @addresses.each do |address| %>
+				        <a href="javascript:;" class="col-xs-4 address" data-addid="<%= address.id%>">
+				            <div><%= address.contacts%></div>
+				            <hr>
+				            <div><%= address.mobile_phone%></div>
+				            <div>
+				            	<%= find_ad_id(address.province)%>
+				            	<%= find_ad_id(address.city)%>
+				            	<%= find_ad_id(address.county)%>
+				            </div>
+				            <div><%= address.detail%></div>
+				            <div class="pull-right edit-btn">
+				                <button class="btn btn-warning btn-sm">编辑</button>
+				            </div>
+				        </a>
+			        <% end %>
+		        <% end %>
+		        <!-- <a href="javascript:;" class="col-xs-4 address">
 		            <div>李四</div>
 		            <hr>
 		            <div>13566669524</div>
@@ -40,7 +49,7 @@
 		            <div class="pull-right edit-btn">
 		                <button class="btn btn-warning btn-sm">编辑</button>
 		            </div>
-		        </a>
+		        </a> -->
 		        <a href="javascript:;" class="col-xs-4 address">
 		            <div>张三</div>
 		            <hr>
@@ -161,6 +170,11 @@
 <script type="text/javascript">
 	var find_ad_url = '<%= find_ad_path%>';
     $(function(){
+    	<% if @userId %>
+    		$.v5shop.initAddress();
+    	<% else %>
+    		$.v5shop.initSecondLevel();
+    	<% end %>
     	$.v5shop.initConfirmOrder();
     });
 </script>
