@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    search_txt = params['search_txt']
+    if search_txt != nil && search_txt != ""
+      @search_txt = search_txt
+      @orders = Order.where("order_code LIKE '%#{search_txt}%'").order("created_at desc").page params[:page]
+    else
+      @orders = Order.order("created_at desc").page params[:page]
+    end
   end
 
   # GET /orders/1

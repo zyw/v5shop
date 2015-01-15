@@ -79,10 +79,10 @@ Rails.application.routes.draw do
 
   # 订单确认
 
-  get 'order_confirms/index' => 'order_confirms#index',as: 'order_confirms'
-  get 'order_confirms/find_ad' => 'order_confirms#find_ad',as: 'find_ad'
-  post 'order_confirms/order_submit' => 'order_confirms#order_submit', as: 'order_submit'
-  get 'order_confirms/order_success' => 'order_confirms#order_success', as: 'order_success'
+  get 'oc/index' => 'order_confirms#index',as: 'order_confirms'
+  get 'oc/find_ad' => 'order_confirms#find_ad',as: 'find_ad'
+  post 'ocs/order_submit' => 'order_confirms#order_submit', as: 'order_submit'
+  get 'oc/order_success' => 'order_confirms#order_success', as: 'order_success'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
