@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :init_form_page, only: [:new,:edit]
-  before_action :user_info,only: [:list]
+  # before_action :user_info,only: [:list]
 
   layout "front",only:[:list]
   # GET /products

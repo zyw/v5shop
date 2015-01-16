@@ -3,7 +3,7 @@
 </div>
 <div class="container bs-container">
 	<%= form_tag(order_submit_path, method: "post",class:"form-horizontal",id:'orderForm') do %>
-	<% if @userId %>
+	<% if current_user %>
 		<div class="panel panel-default">
 		    <div class="panel-heading box-title">
 		        <div class="box-label">
@@ -66,7 +66,7 @@
 	    <div class="panel panel-default">
 	        <div class="panel-heading box-title">
 	            <div class="pull-right">
-	                <%= link_to (user_login_path + "?returnUrl=/#{params[:controller]}/#{params[:action]}"),class:'btn btn-warning btn-sm' do %>
+	                <%= link_to (user_login_path + "?returnUrl=#{order_confirms_path}"),class:'btn btn-warning btn-sm' do %>
 	                	<i class="glyphicon glyphicon-user"></i> 登录选择服务地址
 	                <% end %>
 	            </div>
@@ -170,7 +170,7 @@
 <script type="text/javascript">
 	var find_ad_url = '<%= find_ad_path%>';
     $(function(){
-    	<% if @userId %>
+    	<% if current_user %>
     		$.v5shop.initAddress();
     	<% else %>
     		$.v5shop.initSecondLevel();

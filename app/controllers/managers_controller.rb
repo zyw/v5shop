@@ -1,6 +1,6 @@
 class ManagersController < ApplicationController
 	layout false,:only => ['login','layout']
-	before_action :check_login,except:[:login,:loginPost]
+	before_action :check_login,except:[:login,:loginPost,:logout]
   
   def login
   end
@@ -8,7 +8,12 @@ class ManagersController < ApplicationController
   def loginPost
     manager = Manager.find_by(name:params[:name])
     if manager && manager.authenticate(params[:password])
-        session[:manager_id] = manager.id
+        # session[:manager_id] = manager.id
+        if params[:remember_me]
+          cookies.permanent[:auth_token] = manager.auth_token
+        else
+          cookies[:auth_token] = manager.auth_token
+        end
         redirect_to '/admins/index'
     else
       flash[:alert] = "用户名或密码错误！"
@@ -17,7 +22,7 @@ class ManagersController < ApplicationController
   end
 
   def logout
-    reset_session
+    cookies.delete(:auth_token)
     redirect_to :manager_login
   end
   

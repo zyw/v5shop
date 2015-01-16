@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113105013) do
+ActiveRecord::Schema.define(version: 20150116072536) do
 
   create_table "addresses", force: true do |t|
     t.string   "contacts"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150113105013) do
     t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
   create_table "navs", force: true do |t|
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(version: 20150113105013) do
     t.string   "intro"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_code",   limit: 8
+    t.string   "order_code"
   end
 
   create_table "product_classifies", force: true do |t|

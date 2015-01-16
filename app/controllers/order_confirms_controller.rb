@@ -1,6 +1,6 @@
 class OrderConfirmsController < ApplicationController
   layout "front",only:[:index,:order_success]
-  before_action :user_info,only: [:index]
+  # before_action :user_info,only: [:index]
 
   def index
   	userId = session[:user_id]
@@ -19,12 +19,6 @@ class OrderConfirmsController < ApplicationController
   end
 
   def order_submit
-  	# 订单号生成
-  	dt = DateTime.now.strftime('%y%m%d%H%M%S%L')
-    num = rand(9999999)
-    while num.to_s.length != 7
-      num = rand(9999999)
-    end
     # 创建订单和商品的中间表Model对象
     pids = session[:cart_pids]
 	productOrders = []
@@ -39,7 +33,6 @@ class OrderConfirmsController < ApplicationController
 		o.intro = params[:appoint_intro]
 		o.status = 0
 		o.total = session[:service_total]
-		o.order_code = dt + (num.to_s)
 		o.product_orders = productOrders
 	end
 

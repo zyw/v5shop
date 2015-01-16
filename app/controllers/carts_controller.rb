@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
 	layout "front",only:[:index]
 	before_action :cart_info, only: [:index]
-	before_action :user_info,only: [:index]
 
 	def index
 		

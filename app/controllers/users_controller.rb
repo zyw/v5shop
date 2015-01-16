@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     end
   end
   def logout
-    reset_session
+    session[:user_id] = nil
     redirect_to :root
   end
 
