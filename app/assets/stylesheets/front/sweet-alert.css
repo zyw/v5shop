@@ -13,7 +13,7 @@
   font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
   width: 478px;
   padding: 17px;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
   position: fixed;
   left: 50%;
@@ -59,7 +59,7 @@
     box-shadow: none;
     font-size: 17px;
     font-weight: 500;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px 32px;
     margin: 26px 5px 0 5px;
     cursor: pointer; }
