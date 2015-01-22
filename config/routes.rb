@@ -84,6 +84,9 @@ Rails.application.routes.draw do
   post 'ocs/order_submit' => 'order_confirms#order_submit', as: 'order_submit'
   get 'oc/order_success' => 'order_confirms#order_success', as: 'order_success'
 
+  # 个人中心
+  get 'center/index',as: 'center'
+  get 'center/order',as: 'center_order'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

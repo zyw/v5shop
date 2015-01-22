@@ -21,8 +21,12 @@
 				    您好<%= current_user.name %> <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu top-dropdown-menu" role="menu">
-				  	<li><a href="#">我的订单</a></li>
-				    <li><a href="#">个人中心</a></li>
+				  	<li>
+				  		<%= link_to '我的订单',center_order_path %>
+				  	</li>
+				    <li>
+				    	<%= link_to '个人中心',center_path %>
+				    </li>
 				    <li><%= link_to '退出','/users/logout' %></li>
 				  </ul>
 				</div>，欢迎光临XX网站！
