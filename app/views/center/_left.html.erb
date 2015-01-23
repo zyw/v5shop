@@ -4,12 +4,21 @@
     </a>
     <%= link_to '我的个人中心',center_path,class:'list-group-item'%>
     <%= link_to '我的订单',center_order_path,class:'list-group-item'%>
-    <a href="#" class="list-group-item">服务评价</a>
-    <a href="#" class="list-group-item">我的收藏</a>
+    <%= link_to '服务评价',center_comment_path,class:'list-group-item'%>
+    <%= link_to '我的收藏',center_stow_path,class:'list-group-item'%>
     <a class="list-title">
         账户管理
     </a>
-    <a href="#" class="list-group-item">服务地址管理</a>
-    <a href="#" class="list-group-item">基本信息</a>
-    <a href="#" class="list-group-item">修改密码</a>
+    <%= link_to '服务地址管理',center_address_path,class:'list-group-item'%>
+    <%= link_to '用户信息',center_userinfo_path,class:'list-group-item'%>
+    <%= link_to '修改密码',center_pwd_path,class:'list-group-item'%>
 </div>
+<script type="text/javascript">
+    $(function(){
+        $('.list-group .list-group-item').each(function(i,n){
+            if(($(n).attr('href')+"").match('<%= params[:action]%>')){
+                $(n).addClass('list-active')
+            }
+        })
+    });
+</script>

@@ -1,0 +1,48 @@
+<div class="container next-banner">
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+    <div class="col-xs-3 col-xs-lz">
+        <%= render 'left'%>
+    </div>
+    <div class="col-xs-9 col-xs-rlz">
+        <div class="page-header header-text">
+            <div class="pull-right">
+                <button class="btn btn-warning address-addbtn">
+                    <i class="glyphicon glyphicon-edit"></i> 编辑
+                </button>
+            </div>
+            <h4>用户信息</h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-3" style="padding-top: 50px;padding-left: 60px;">
+                <div class="avatar-border">
+                    <%= image_tag('front/avatar.jpg')%>
+                </div>
+                <div style="padding-left: 13px;margin-top: 8px;"><a href="#">修改头像</a></div>
+            </div>
+            <div class="col-xs-9 basic-info">
+                <div>
+                    姓名：张三
+                </div>
+                <hr style="height: 2px;"/>
+                <div>
+                    生日：1983-12-14
+                </div>
+                <hr style="height: 2px;"/>
+                <div>
+                    性别：男
+                </div>
+                <hr style="height: 2px;"/>
+                <div>
+                    昵称：平常心
+                </div>
+                <hr style="height: 2px;"/>
+                <div>
+                    电话：13890908046
+                </div>
+                <hr style="height: 2px;"/>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->

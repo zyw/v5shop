@@ -87,6 +87,13 @@ Rails.application.routes.draw do
   # 个人中心
   get 'center/index',as: 'center'
   get 'center/order',as: 'center_order'
+  get 'center/stow', as: 'center_stow'
+  get 'center/comment',as: 'center_comment'
+  get 'center/address',as: 'center_address'
+  get 'center/address/new' => 'center#address_new',as:'center_address_new'
+
+  get 'center/pwdupdate',as: 'center_pwd'
+  get 'center/userinfo',as: 'center_userinfo'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

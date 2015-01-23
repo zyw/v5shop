@@ -1,0 +1,78 @@
+<div class="container next-banner">
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+    <div class="col-xs-3 col-xs-lz">
+        <%= render 'left'%>
+    </div>
+    <div class="col-xs-9 col-xs-rlz">
+        <div class="page-header header-text">
+            <div class="pull-right">
+                <a class="btn btn-success address-addbtn" href="<%= center_address_new_path %>">
+                    <i class="glyphicon glyphicon-plus"></i> 添加新地址
+                </a>
+            </div>
+            <h4>服务地址管理</h4>
+        </div>
+        <table class="table table-striped">
+            <colgroup>
+                <col class="col-xs-1">
+                <col class="col-xs-2">
+                <col class="col-xs-4">
+                <col class="col-xs-1">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>服务地址</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>张三</td>
+                <td>13801918047</td>
+                <td>北京 北京市 东城区
+                    和平里东街18号国家林业局</td>
+                <td>
+                    <a class="btn btn-default opt-btn" href="#" title="编辑">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>&nbsp;&nbsp;
+                    <a class="btn btn-default opt-btn" href="#" title="删除">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>李四</td>
+                <td>13801918047</td>
+                <td>陕西 西安市 高新区
+                    茶张路一号省信息化中心</td>
+                <td>
+                    <a class="btn btn-default opt-btn" href="#" title="编辑">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>&nbsp;&nbsp;
+                    <a class="btn btn-default opt-btn" href="#" title="删除">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>王五</td>
+                <td>13612458796</td>
+                <td>陕西 西安市 高新区
+                    茶张路一号省信息化中心</td>
+                <td>
+                    <a class="btn btn-default opt-btn" href="#" title="编辑">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>&nbsp;&nbsp;
+                    <a class="btn btn-default opt-btn" href="#" title="删除">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->

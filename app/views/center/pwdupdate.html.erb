@@ -1,0 +1,41 @@
+<div class="container next-banner">
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+    <div class="col-xs-3 col-xs-lz">
+        <%= render 'left'%>
+    </div>
+    <div class="col-xs-9 col-xs-rlz">
+        <div class="page-header header-text">
+            <h4>密码修改</h4>
+        </div>
+        <form action="#" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-xs-2">原密码</label>
+                <div class="col-xs-9">
+                    <input class="form-control" placeholder="原密码" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">新密码</label>
+                <div class="col-xs-9">
+                    <input class="form-control" placeholder="请输入6-10位的新密码" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">确认密码</label>
+                <div class="col-xs-9">
+                    <input class="form-control" placeholder="请确认新输入的密码" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <button type="submit" class="btn btn-success">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>
+                        保 存
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- /container -->

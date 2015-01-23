@@ -1,0 +1,66 @@
+<div class="container next-banner">
+    <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+    <div class="col-xs-3 col-xs-lz">
+        <%= render 'left' %>
+    </div>
+    <div class="col-xs-9 col-xs-rlz">
+        <div class="page-header header-text">
+            <div class="pull-right">
+                <a class="btn btn-default address-addbtn" href="<%= center_address_path %>">
+                    <i class="glyphicon glyphicon-share-alt"></i> 返回
+                </a>
+            </div>
+            <h4>服务地址管理</h4>
+        </div>
+        <form action="#" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-xs-2">联系人</label>
+                <div class="col-xs-9">
+                    <input class="form-control" placeholder="输入您的真实姓名" spellcheck="false" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">手机号</label>
+                <div class="col-xs-9">
+                    <input class="form-control" placeholder="在这里输入您的手机号，下单后会有工作人员跟您联系" spellcheck="false" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">服务地址</label>
+                <div class="col-xs-10">
+                    <label class="checkbox-inline col-xs-3" style="padding-left: 0;">
+                        <select name="" id="1" class="form-control">
+
+                        </select>
+                    </label>
+                    <label class="checkbox-inline col-xs-3" style="padding-left: 0;">
+                        <select name="" id="2" class="form-control">
+
+                        </select>
+                    </label>
+                    <label class="checkbox-inline col-xs-4" style="padding-left: 0;">
+                        <select name="" id="3" class="form-control">
+
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">详细地址</label>
+                <div class="col-xs-9">
+                    <textarea rows="4" class="form-control" placeholder="输入您的详细地址"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <button type="submit" class="btn btn-success">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>
+                        保 存
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- /container -->
