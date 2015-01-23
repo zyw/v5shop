@@ -9,4 +9,8 @@ module ApplicationHelper
 			return zore
 		end
 	end
+
+	def find_ad_id(id)
+		return (AdminDivision.find(id)).name
+	end
 end

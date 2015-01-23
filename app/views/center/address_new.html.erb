@@ -14,35 +14,39 @@
             </div>
             <h4>服务地址管理</h4>
         </div>
-        <form action="#" class="form-horizontal">
+        <%= form_tag(center_address_create_path, method: "post",class:"form-horizontal") do %>
             <div class="form-group">
                 <label class="control-label col-xs-2">联系人</label>
                 <div class="col-xs-9">
-                    <input class="form-control" placeholder="输入您的真实姓名" spellcheck="false" type="text">
+                    <input type="hidden" name="address[user_id]" value="<%= session[:user_id]%>">
+                    <input type="text" name="address[contacts]" class="form-control" placeholder="输入您的真实姓名">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-2">手机号</label>
                 <div class="col-xs-9">
-                    <input class="form-control" placeholder="在这里输入您的手机号，下单后会有工作人员跟您联系" spellcheck="false" type="text">
+                    <input type="text" name="address[mobile_phone]" class="form-control" placeholder="在这里输入您的手机号，下单后会有工作人员跟您联系">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-xs-2">服务地址</label>
                 <div class="col-xs-10">
                     <label class="checkbox-inline col-xs-3" style="padding-left: 0;">
-                        <select name="" id="1" class="form-control">
-
+                        <select id="province" name="address[province]" class="form-control">
+                            <option value="0">省份/自治区</option>
+                            <%= @first.each do |ad|%>
+                                <option value="<%= ad.id %>"><%= ad.name%></option>
+                            <% end %>
                         </select>
                     </label>
                     <label class="checkbox-inline col-xs-3" style="padding-left: 0;">
-                        <select name="" id="2" class="form-control">
-
+                        <select id="city" name="address[city]" class="form-control">
+                            <option value="0">城市/地区/自治州</option>
                         </select>
                     </label>
                     <label class="checkbox-inline col-xs-4" style="padding-left: 0;">
-                        <select name="" id="3" class="form-control">
-
+                        <select id="county" name="address[county]" class="form-control">
+                            <option value="0">区/县</option>
                         </select>
                     </label>
                 </div>
@@ -50,7 +54,7 @@
             <div class="form-group">
                 <label class="control-label col-xs-2">详细地址</label>
                 <div class="col-xs-9">
-                    <textarea rows="4" class="form-control" placeholder="输入您的详细地址"></textarea>
+                    <textarea name="address[detail]" class="form-control" rows="4" placeholder="输入您的详细地址"></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -61,6 +65,12 @@
                     </button>
                 </div>
             </div>
-        </form>
+        <% end %>
     </div>
 </div> <!-- /container -->
+<script type="text/javascript">
+    var find_ad_url = '<%= find_ad_path%>';
+    $(function(){
+        $.v5shop.initSecondLevel();
+    });
+</script>

@@ -91,7 +91,7 @@ Rails.application.routes.draw do
   get 'center/comment',as: 'center_comment'
   get 'center/address',as: 'center_address'
   get 'center/address/new' => 'center#address_new',as:'center_address_new'
-
+  post 'center/address/create' => 'center#address_create',as:'center_address_create'
   get 'center/pwdupdate',as: 'center_pwd'
   get 'center/userinfo',as: 'center_userinfo'
   # The priority is based upon order of creation: first created -> highest priority.

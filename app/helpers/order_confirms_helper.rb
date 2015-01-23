@@ -1,5 +1,8 @@
 module OrderConfirmsHelper
-	def find_ad_id(id)
+=begin
+def find_ad_id(id)
 		return (AdminDivision.find(id)).name
 	end
+=end
+
 end

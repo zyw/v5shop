@@ -30,21 +30,34 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>张三</td>
-                <td>13801918047</td>
-                <td>北京 北京市 东城区
-                    和平里东街18号国家林业局</td>
-                <td>
-                    <a class="btn btn-default opt-btn" href="#" title="编辑">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>&nbsp;&nbsp;
-                    <a class="btn btn-default opt-btn" href="#" title="删除">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
+            <% if @addresses %>
+                <% @addresses.each do |address|%>
+                    <tr>
+                        <td><%= address.contacts %></td>
+                        <td><%= address.mobile_phone %></td>
+                        <td>
+                            <%= find_ad_id(address.province)%> 
+                            <%= find_ad_id(address.city)%> 
+                            <%= find_ad_id(address.county)%> 
+                            <%= address.detail%>
+                        </td>
+                        <td>
+                            <a class="btn btn-default opt-btn" href="#" title="编辑">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>&nbsp;&nbsp;
+                            <a class="btn btn-default opt-btn" href="#" title="删除">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <% end %>
+            <% elsif %>
+                <tr>
+                    <td colspan="4">还没有服务地址，赶快添加吧！</td>
+                </tr>
+            <% end %>
+            
+            <!-- <tr>
                 <td>李四</td>
                 <td>13801918047</td>
                 <td>陕西 西安市 高新区
@@ -71,7 +84,7 @@
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
-            </tr>
+            </tr> -->
             </tbody>
         </table>
     </div>
