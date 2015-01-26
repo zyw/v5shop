@@ -1,5 +1,5 @@
 class OrderConfirmsController < ApplicationController
-  layout "front",only:[:index,:order_success]
+  layout "front",only:[:index,:order_success,:order_submit]
   # before_action :user_info,only: [:index]
 
   def index
@@ -7,6 +7,7 @@ class OrderConfirmsController < ApplicationController
   	if userId
   		@addresses = Address.where(user_id: userId)
   	else
+  		@address = Address.new
   		@first = AdminDivision.where(parent_id:0)
   	end
   	@total = session[:service_total]
@@ -59,7 +60,9 @@ class OrderConfirmsController < ApplicationController
 	  			format.html { redirect_to :order_success, notice: '订单提交成功。' }
 		        format.json { render :show, status: :created, location: @order }
 	  		else
-	  			format.html { render :order_confirms }
+	  			@first = AdminDivision.where(parent_id:0)
+	  			@total = session[:service_total]
+	  			format.html { render :index }
 		        format.json { render json: @order.errors, status: :unprocessable_entity }
 	  		end
 	  	end

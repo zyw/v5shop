@@ -20,7 +20,7 @@ class CenterController < ApplicationController
 		@addresses = Address.where(user_id: session[:user_id]).order("created_at desc")
 	end
 	def address_new
-		@adress = Address.new
+		@address = Address.new
 		@first = AdminDivision.where(parent_id:0)
 	end
 	def address_create
@@ -31,7 +31,8 @@ class CenterController < ApplicationController
 		    format.html { redirect_to :center_address, notice: '添加地址成功。' }
 		    format.json { render :show, status: :created, location: @address }
 		  else
-		    format.html { render :center_address_new }
+		  	@first = AdminDivision.where(parent_id:0)
+		    format.html { render :address_new }
 		    format.json { render json: @address.errors, status: :unprocessable_entity }
 		  end
 		end
