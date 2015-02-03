@@ -15,7 +15,7 @@ jQuery(function() {
         authenticity_token = $('meta[name=csrf-token]').attr('content');
     function initWebUploader(params){
         var options = $.extend({
-            server:'/product/picture/upload',
+            server:'/admin/product/picture/upload',
             pick: '#filePicker',
             startUploadBtn:'start_upload',
             uploadUrl:'product_picture',
