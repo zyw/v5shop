@@ -26,3 +26,5 @@ insert  into `dicts`(`id`,`name`,`dict_type_id`,`intro`,`created_at`,`updated_at
 	(16,'元/台',5,'如：空调','2015-01-07 09:49:42','2015-01-07 09:49:42','元/台'),
 	(17,'元/档',5,'清洁房屋，安装多少平米一个档来进行收费','2015-01-07 09:50:53','2015-01-07 09:50:53','元/档'),
 	(18,'元/平米',1,'按照平米数来进行收费','2015-01-07 09:51:34','2015-01-07 09:51:34','元/平米');
+/*新增管理员*/
+insert  into `managers`(`id`,`name`,`password_digest`,`email`,`loginNum`,`icon`,`created_at`,`updated_at`,`auth_token`) values (1,'zhangsan','$2a$10$Gfplbvyr/wwGHcIiiCWnguTKi2ygkI5JeAwmoWQSqDe5pjNtX4vlW','zhangsan@163.com',0,'icon','2014-12-06 06:18:23','2014-12-09 03:10:31','k3XvJiqRmxpiU8EfV6f2Yw');
