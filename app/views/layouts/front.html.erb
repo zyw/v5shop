@@ -18,7 +18,11 @@
 	       	<% if current_user %>
 	       		<div class="btn-group">
 				  <button type="button" class="btn btn-default btn-sm dropdown-toggle top-btn" data-toggle="dropdown" aria-expanded="false">
-				    您好<%= current_user.name %> <span class="caret"></span>
+				    您好<%if current_user.name %>
+                            <%= current_user.name%>
+                        <%else%>
+                            <%= current_user.email%>
+                        <%end%> <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu top-dropdown-menu" role="menu">
 				  	<li>

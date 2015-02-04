@@ -75,6 +75,7 @@ class UsersController < ApplicationController
   end
   def loginPost
     user = User.find_by(name:params[:name])
+    user ||= User.find_by(email:params[:name])
     returnUrl = params[:returnUrl]
     if user && user.authenticate(params[:password])
         session[:user_id] = user.id
@@ -103,10 +104,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to :users, notice: '新增用户成功！' }
+        format.html { redirect_to :user_login, notice: '新增用户成功！' }
         format.json { render :users, status: :created, location: @user }
       else
-        format.html { render :users }
+        format.html { render :user_register }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
