@@ -1,0 +1,102 @@
+<div class="container next-banner">
+  <%= image_tag('front/banner_03.jpg',width:'1000')%>
+</div>
+<div class="container bs-container">
+  <div class="row">
+    <div class="col-xs-9 about-block">
+      <div class="subtitle">关于我们</div>
+      <p class="about-text">
+        V5家政是个一站式家政O2O平台，基于网络平台整合家政市场，专注于家庭保洁和室内翻新，为用户提供更为高效、
+        放心的家政服务。
+      </p>
+      <p class="about-text">
+        V5家政成立于2014年，是一个还比较年轻的平台，向用户提供更为便捷和高效的家政服务是我们的口号。我们将会提供
+        便捷的移动端的访问入口来给用户带来更多便利，让您随时随地享受优质的保洁服务。
+      </p>
+    </div>
+    <div class="col-xs-3 about-block">
+        <a href="/">
+            <%= image_tag('front/logo1.png')%>
+        </a>
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="subtitle">联系我们</div>
+    </div>
+    <div class="col-xs-6">
+      <ul class="contact-text">
+        <li>
+          地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址: &nbsp;西安市科技三路中清大厦5015
+        </li>
+        <li>
+          客服热线: &nbsp;4000580100
+        </li>
+        <li>
+          电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话: &nbsp;+86-029-12345678
+        </li>
+        <li>
+          邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱: &nbsp;zyw090111@163.com
+        </li>
+      </ul>
+      <ul class="contact-text">
+        <li>
+          家政公司合作
+        </li>
+        <li>
+          电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话: &nbsp;13891918047
+        </li>
+        <li>
+          邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱: &nbsp;zyw090111@163.com
+        </li>
+      </ul>
+    </div>
+    <div class="col-xs-6">
+      <div class="opinion">意见建议 <i class="glyphicon glyphicon-download"></i></div>
+      <%= form_for(@suggest,url:suggest_save_path,html:{class:'form-horizontal',id:'productForm',role:'form'}) do |f| %>
+        <div class="form-group">
+          <div class="col-xs-9">
+            <%= f.text_field :name,class:'form-control',placeholder:'您的姓名'%>
+            <% if @suggest.errors[:name].any?%>
+                <div class="common-err"><%= @suggest.errors[:name][0]%></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-9">
+            <%= f.text_field :phone,class:"form-control",placeholder:"您的电话" %>
+            <% if @suggest.errors[:name].any?%>
+                <div class="common-err"><%= @suggest.errors[:phone][0]%></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-9">
+            <%= f.text_field :email,class:"form-control",placeholder:"您的Email" %>
+            <% if @suggest.errors[:name].any?%>
+                <div class="common-err"><%= @suggest.errors[:email][0]%></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-11">
+            <%= f.text_area :content,class:"form-control",row:3,placeholder:'意见或者建议' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-offset-9 col-xs-10">
+            <button type="submit" class="btn btn-warning">提 交</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function(){
+        <%if notice %>
+            alert("<%= notice %>");
+        <% end %>
+    });
+  </script>
+</div> <!-- /container -->

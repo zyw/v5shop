@@ -33,3 +33,12 @@ zh-CN:
               blank: 请选择区/县
             detail:
               blank: 请填写详细的服务地址
+        suggest:
+          attributes:
+            name:
+              blank: "名称不能为空"
+            phone:
+              blank: "电话不能为空"
+              invalid: "电话号码格式不正确"
+            email:
+              invalid: "Email格式不正确"

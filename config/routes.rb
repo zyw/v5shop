@@ -97,6 +97,20 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # 意见建议
+  # resources :suggests
+  get 'admin/suggests(.:format)' => 'suggests#index',as: 'suggests'
+  # post '/suggests(.:format)' => 'suggests#create'
+  # get '/suggests/new(.:format)' => 'suggests#new',as: 'new_suggest'
+  # get '/suggests/:id/edit(.:format)' => 'suggests#edit',as: 'edit_suggest'
+  get 'admin/suggests/:id(.:format)' => 'suggests#show',as: 'suggest'
+  # patch '/suggests/:id(.:format)' => 'suggests#update'
+  # put '/suggests/:id(.:format)' => 'suggests#update'
+  delete 'admin/suggests/:id(.:format)' => 'suggests#destroy'
+
+  # 联系我们
+  get 'contact/index' => 'contacts#index',as: 'contact'
+  post 'contact/suggest(.:format)' => 'contacts#create',as: 'suggest_save'
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 

@@ -51,8 +51,9 @@
 	     <div class="topcon">
 	         <div class="topcon_l">
                <a href="/">
-                <%= image_tag('front/logo1.png',width:'105',height:'104')%></div>
+                <%= image_tag('front/logo1.png',width:'105',height:'104')%>
                </a>
+             </div>
 	         <div class="topcon_r">
 	            <div class="dh">
 	            	<%= image_tag('front/dh.jpg',width:'251',height:'30')%>
@@ -64,7 +65,9 @@
 	                    <li><a href="about.html">快速下单</a></li>
 	                    <li><%= link_to '服务项目',product_list_path %></li>
 	                    <li><a href="anli.html">客户案例</a></li>
-	                    <li><a href="lxwm.html">联系我们</a></li>
+	                    <li>
+                          <%= link_to '联系我们',contact_path %>
+                        </li>
 	                </ul>
 	            </div>
 	         </div>
