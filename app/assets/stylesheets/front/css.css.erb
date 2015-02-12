@@ -5,14 +5,14 @@
 .container1{
 	  width:100%;
       height:auto;
-      margin:0px auto;
+      margin:0 auto;
 	  background-color:#FFF;
 	 }
 /*head*/
 .head{
 	 width:100%;
      height:32px;
-     margin:0px auto;
+     margin:0 auto;
 	 background-color:#f3f3f3;
 	}
 .headcon{
@@ -62,7 +62,6 @@
 	width:199px;
 	height:106px;
 	float:left;
-	/* font-family:"微软雅黑"; */
 	color:#f28d01;
 	font-size:50px;
 	line-height:106px;
@@ -84,8 +83,8 @@
 	text-align:right;   
 	}	
 .menu ul{
-	margin:0px;
-	padding:0px;
+	margin:0;
+	padding:0;
 	}
 .menu ul li{
 	width:120px;
@@ -97,83 +96,68 @@
 .menu ul li a{
 	font-size:16px;
 	color:#ee8d00;
-	/* font-family:"微软雅黑"; */
 	font-weight:bold;
 	}	
 .menu ul li a:hover{
 	text-decoration:none;
 	color:#e66801;
 	cursor:pointer;
-	}	
-/*banner*/
-/*.banner{
+	}
+/*login reg banner*/
+.logreg-banner{
 	width:100%;
 	height:500px;
-	margin:0px auto;
-	background:url() no-repeat;
-	}
-.bannercon{
-	width:1000px;
-	height:500px;
-	margin:0px auto; 
-	}
-.bannercon_l{
-	width:580px;
-	height:500px;
-	float:left;
-	}
-.bannercon_l h1{
-	*//* font-family:"微软雅黑"; *//*
-	color:#ff7e12;
-	font-size:46px;
-	text-align:center;
-	font-weight:bold;
-	line-height:220px; 
-	}
-.bannercon_l p{
-	width:333px;
-	height:90px;
-	margin:20px auto;
-	}
-.bannercon_r{
-	width:300px;
-	height:270px;
-	float:right;
-	padding:230px 0 0 100px;
-	font-size:16px;
-	*//* font-family:"微软雅黑"; *//*
-	font-weight:bold;
-	line-height:50px; 
-	}*/
-	.ewm-text {
-        font-size: 16px;
-        /* font-family:"微软雅黑"; */
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-.banner{
-    width:100%;
-    /*height:500px;*/
+	margin:0 auto;
+	background:url(<%= asset_path 'front/banner1.jpg' %>) no-repeat;
+}
+.logreg-banner .bannercon{
+    width:1000px;
+    height:500px;
     margin:0 auto;
-    /*background:url(../images/banner1.jpg) no-repeat;*/
 }
-/*.bannercon{
-	width:1000px;
-	height:500px;
-	margin:0px auto;
-	}*/
-.bannercon_l{
-    /*width:580px;*/
-    /*height:500px;*/
-    /*float:left;*/
+.logreg-banner .bannercon_l{
+    width:580px;
+    height:500px;
+    float:left;
 }
-.bannercon_l h1{
-    /*	font-family:"Microsoft YaHei";*/
+.logreg-banner .bannercon_l h1{
     color:#ff7e12;
     font-size:46px;
     text-align:center;
     font-weight:bold;
-    /*line-height:220px; */
+    line-height:220px;
+}
+.logreg-banner .bannercon_l p{
+    width:333px;
+    height:90px;
+    margin:20px auto;
+}
+.logreg-banner .bannercon_r{
+    width:300px;
+    height:270px;
+    float:right;
+    padding:230px 0 0 100px;
+    font-size:16px;
+    font-weight:bold;
+    line-height:50px;
+}
+/*首页 banner*/
+.ewm-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.banner{
+    width:100%;
+    margin:0 auto;
+}
+.bannercon_l{
+}
+.bannercon_l h1{
+    color:#ff7e12;
+    font-size:46px;
+    text-align:center;
+    font-weight:bold;
     margin-bottom: 70px;
 }
 .bannercon_l p{
@@ -183,10 +167,8 @@
 }
 .bannercon_r{
     height:270px;
-    /*	float:right;*/
     padding:100px 0 0 100px;
     font-size:16px;
-    /*	font-family:"Microsoft YaHei";*/
     font-weight:bold;
     line-height:50px;
     color:#000000;
