@@ -15,6 +15,7 @@
 //= require bootstrap.min
 //= require toastr.min
 //= require front/sweet-alert.min
+//= require front/jquery.appear
 //= require front/spinner.min
 //= require front/bootstrap-datepicker
 //= require front/bootstrap-timepicker

@@ -51,12 +51,12 @@
         $('.spinner').on("changed",function(event, value){
             var key = $(this).data("pid");
             changeNum(key,value);
-        })
+        });
         $(".select_num").on("change",function(){
             var key = $(this).data("pid");
             var value = $(this).val();
             changeNum(key,value);
-        })
+        });
         $(".cart-btn").click(function(){
             var $remove = $(this);
             var pid = $(this).data("pid");
@@ -88,7 +88,7 @@
                     }
                 );
         });
-    }
+    };
 
     v5shop.initSecondLevel = function(){
         function find_ad(adpid,flag){
@@ -125,7 +125,7 @@
                 find_ad(city,'county');
             }
         });
-    }
+    };
 
     v5shop.initConfirmOrder = function(){
 
@@ -144,7 +144,23 @@
         $("#finishOrder").on('click',function(){
             $("#orderForm").submit();
         });
-    }
+    };
+    v5shop.initIndexAnimate = function(){
+        $(".animated").appear();
+        $(document.body).on('appear', '.fw1', function() {
+            jQuery(this).each(function(){ $(this).addClass('fadeInLeft') });
+        });
+
+        $(document.body).on('appear', '.fadeInUptNow', function() {
+            $(this).each(function(){ $(this).addClass('fadeInUp') });
+        });
+        $(document.body).on('appear', '.fadeInLeftNow', function() {
+            $(this).each(function(){ $(this).addClass('fadeInLeft') });
+        });
+        $(document.body).on('appear', '.fadeInRightNow', function() {
+            $(this).each(function(){ $(this).addClass('fadeInRight') });
+        });
+    };
 
     $.v5shop = v5shop;
 

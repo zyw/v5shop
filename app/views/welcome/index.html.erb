@@ -1,39 +1,53 @@
 
 	<!--banner start-->
 	<div class="banner">
-	   <div class="bannercon">
-	       
-	       <div class="row">
-            <div class="col-lg-8" style="width:60%;">
-                <div class="bannercon_l">
-	           <h1>最值得信赖的保洁服务平台</h1>
-	           <p><a href="">
-	           	<%= image_tag('front/pic1.png',width:'333',height:'60')%>
-	           	</a></p>
-	           <p>
-	           <%= link_to image_tag('front/pic2.png',width:'333',height:'60'),product_list_path%>
-	           </p>
-	       </div>
+
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <%= image_tag('front/banner1.jpg',alt:"banner1")%>
+            <div class="carousel-caption">
+              <div class="row">
+                <div class="col-xs-7">
+                  <div class="bannercon_l">
+                    <h1 class="delay-450 animated fadeInLeft">最值得信赖的保洁服务平台</h1>
+                    <p><a class="delay-550 animated bounceInUp" href="">
+                      <%= image_tag('front/pic1.png',width:'333',height:'60')%>
+                    </a></p>
+                    <p>
+                      <%= link_to image_tag('front/pic2.png',width:'333',height:'60'),product_list_path,class:'delay-650 animated bounceInDown'%>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="delay-450 animated fadeInRight bannercon_r">扫下方微信二维码预定更方便<br/>
+                    <%= image_tag('front/2wm.jpg',width:'172',height:'172')%></div>
+                </div>
+              </div>
+
             </div>
-            <div class="col-lg-4" style="text-align:center">
-            	<div style="margin-top:230px;">
-            		<div class="col-lg-12 ewm-text">扫下方微信二维码预定更方便</div>
-		       		<div class="col-lg-12">
-		       			<%= image_tag('front/2wm.jpg',width:'172',height:'172')%>
-		       		</div>
-            	</div>
-                
+          </div>
+          <div class="item">
+            <%= image_tag('front/banner2.jpg',alt:"banner2")%>
+            <div class="carousel-caption">
             </div>
-           </div>
-       </div>
-	   </div>
+          </div>
+        </div>
+      </div>
 	</div>
 	<!--banner end-->
 	<!--fwxm start-->
 	<div class="fwxm">
 	   <div class="fwxmcon">
 	       <div class="tit1">服务项目 SERVICE</div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw1.png',width:'110',height:'110')%>
 	            </div>
@@ -42,7 +56,7 @@
 	               <p>室内保洁<br/>室外保洁</p>
 	            </div>
 	         </div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw3.png',width:'110',height:'110')%>
 	            </div>
@@ -51,7 +65,7 @@
 	               <p>沙发清洗<br/>地毯清洗</p>
 	            </div>
 	         </div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw5.png',width:'110',height:'110')%>
 	            </div>
@@ -60,7 +74,7 @@
 	               <p>内墙粉刷<br/>外墙粉刷</p>
 	            </div>
 	         </div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw2.png',width:'110',height:'110')%>
 	            </div>
@@ -69,7 +83,7 @@
 	               <p>石材翻新<br/>地板打蜡</p>
 	            </div>
 	         </div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw4.png',width:'110',height:'110')%>
 	            </div>
@@ -78,7 +92,7 @@
 	               <p>空调安装<br/>落雨管道安装</p>
 	            </div>
 	         </div>
-	         <div class="fw1">
+	         <div class="fw1 animated fadeInLeft">
 	            <div class="fw1_l">
 	            	<%= image_tag('front/fw6.png',width:'110',height:'110')%>
 	            </div>
@@ -95,25 +109,25 @@
 	   <div class="fwalcon">
 	       <div class="tit1">服务案例 CASE</div>
 	       <ul>
-	          <li>
+	          <li class="animated fadeInUptNow">
 	             <a href="">
 	             	<%= image_tag('front/pic1.jpg',width:'236',height:'175')%>
 	             </a>
 	             <h1><a href="">案例名称</a></h1>
 	          </li>
-	          <li>
+	          <li class="animated fadeInUptNow">
 	             <a href="">
 	             	<%= image_tag('front/pic2.jpg',width:'236',height:'175')%>
 	             </a>
 	             <h1><a href="">案例名称</a></h1>
 	          </li>
-	          <li>
+	          <li class="animated fadeInUptNow">
 	             <a href="">
 	             	<%= image_tag('front/pic3.jpg',width:'236',height:'175')%>
 	             </a>
 	             <h1><a href="">案例名称</a></h1>
 	          </li>
-	          <li>
+	          <li class="animated fadeInUptNow">
 	             <a href="">
 	             	<%= image_tag('front/pic4.jpg',width:'236',height:'175')%>
 	             </a>
@@ -128,16 +142,16 @@
 	     <div class="fwcncon">
 	         <div class="tit1">xx竭诚为您服务</div>
 	         <ul>
-	             <li>
+	             <li class="animated fadeInLeftNow">
 	             	<%= image_tag('front/cn1.jpg',width:'236',height:'250')%>
 	             </li>
-	             <li>
+	             <li class="animated fadeInLeftNow">
 	             	<%= image_tag('front/cn2.jpg',width:'236',height:'250')%>
 	             </li>
-	             <li>
+	             <li class="animated fadeInRightNow">
 	             	<%= image_tag('front/cn3.jpg',width:'236',height:'250')%>
 	             </li>
-	             <li>
+	             <li class="animated fadeInRightNow">
 	             	<%= image_tag('front/cn4.jpg',width:'236',height:'250')%>
 	             </li>
 	         </ul>
@@ -152,3 +166,8 @@
 	    </div>
 	</div>
 	<!--fwlc end-->
+    <script type="text/javascript">
+        $(function(){
+            $.v5shop.initIndexAnimate();
+        });
+    </script>
