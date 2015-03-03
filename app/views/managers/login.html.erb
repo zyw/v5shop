@@ -12,6 +12,12 @@
         <link href="<%= stylesheet_path 'AdminLTE' %>" rel="stylesheet" type="text/css" />
 
         <link href="<%= stylesheet_path 'toastr.min' %>" rel="stylesheet" type="text/css" />
+        <!-- jQuery 2.0.2 --> 
+        <script src="<%= javascript_path 'jquery' %>" type="text/javascript"></script>   
+        <!-- Bootstrap    -->
+        <script src="<%= javascript_path 'bootstrap.min' %>" type="text/javascript"></script>
+
+        <script src="<%= javascript_path 'toastr.min' %>" type="text/javascript"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -52,14 +58,6 @@
             </div>
             <input type="hidden" id="errorMessage" value="<%= flash[:alert]%>">
         </div>
-
-
-        <!-- jQuery 2.0.2 --> 
-        <script src="<%= javascript_path 'jquery' %>"></script>   
-        <!-- Bootstrap    -->
-        <script src="<%= javascript_path 'bootstrap.min' %>" type="text/javascript"></script>
-
-        <script src="<%= javascript_path 'toastr.min' %>" type="text/javascript"></script>
         <script type="text/javascript">
             $(function(){
                 var errorMsg = $("#errorMessage").val();

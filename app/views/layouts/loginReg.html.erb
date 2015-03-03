@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= @title %> | XX保洁</title>
+    <meta name="keywords" content="U美居保洁服务平台" />
+    <meta name="description" content="U美居保洁服务平台致力于为广大用户提供优质的保洁服务，包括家政、空调装卸、地板翻新等。" />
+    <title><%= @title %> | U美居保洁服务平台</title>
     <link rel="stylesheet" type="text/css" href="<%= stylesheet_path 'bootstrap.min' %>">
     <%= stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true %>
 </head>
@@ -33,10 +35,12 @@
                 <div class="menu">
                     <ul> 
                         <li><%= link_to '网站首页',:root %></li>
-                        <li><a href="about.html">快速下单</a></li>
+                        <li><a href="#">快速下单</a></li>
                         <li><%= link_to '服务项目',product_list_path %></li>
-                        <li><a href="anli.html">客户案例</a></li>
-                        <li><a href="lxwm.html">联系我们</a></li>
+                        <li><a href="#">客户案例</a></li>
+                        <li>
+                            <%= link_to '联系我们',contact_path %>
+                        </li>
                     </ul>
                 </div>
              </div>
@@ -78,7 +82,7 @@
         <div class="footercon">
              <div class="footer_links"><a href="">网站首页</a>　|　<a href="">快速下单</a>　|　<a href="">服务项目</a>　|　<a href="">客户案例</a>　|　<a href="#">联系我们</a>
             </div>
-            <p>Copyright@2014 XXX 版权所有 陕ICP备123456789号</p>
+            <p>Copyright@2014 V5科技版权所有 京ICP备12025928号-2</p>
         </div>
     </div>
     <!--footer end-->
