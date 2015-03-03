@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 # gem "twitter-bootstrap-rails"
 
-gem 'font-awesome-rails', '~> 4.2.0.0'
+# gem 'font-awesome-rails', '~> 4.2.0.0'
 
 gem 'ionicons-rails', '~> 1.5.2'
 # 加密密码
